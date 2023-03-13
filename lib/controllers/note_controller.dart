@@ -1,6 +1,6 @@
-import 'note.dart';
+import '../models/note.dart';
 
-class NoteData {
+class NoteController {
   List<Note> allNotes = [Note(id: 0, text: "Love yourself more"), Note(id: 1, text: "Drink water")];
 
   List<Note> getNotes() {

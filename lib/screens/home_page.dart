@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:notes_app/screens/editing_note_page.dart';
 
-import '../models/note_data.dart';
+import '../controllers/note_controller.dart';
 import '../utils/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +16,9 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         backgroundColor: CColors.mainColor,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(const EditingNotePage());
+        },
         child: const Icon(Icons.add),
       ),
       body: Padding(
@@ -30,8 +34,15 @@ class HomePage extends StatelessWidget {
               height: 8,
             ),
             CupertinoListSection.insetGrouped(
-              children:
-                  NoteData().allNotes.map((e) => CupertinoListTile(title: Text(e.text))).toList(),
+              children: NoteController()
+                  .allNotes
+                  .map((e) => CupertinoListTile(
+                        title: Text(e.text),
+                        onTap: () {
+                          Get.to(const EditingNotePage());
+                        },
+                      ))
+                  .toList(),
             )
           ],
         ),
