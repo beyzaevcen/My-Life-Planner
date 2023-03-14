@@ -1,8 +1,14 @@
+import 'package:flutter_quill/flutter_quill.dart';
+import 'package:get/get.dart';
+import 'package:notes_app/screens/editing_note_page.dart';
+
 import '../models/note.dart';
 
-class NoteController {
-  List<Note> allNotes = [Note(id: 0, text: "Love yourself more"), Note(id: 1, text: "Drink water")];
+class NoteController extends GetxController {
+  final allNotes =
+      <Note>[Note(id: 0, text: "Love yourself more"), Note(id: 1, text: "Drink water")].obs;
 
+  Rx<QuillController> quillController = QuillController.basic().obs;
   List<Note> getNotes() {
     return allNotes;
   }
@@ -21,5 +27,17 @@ class NoteController {
 
   void deleteNote(Note note) {
     allNotes.remove(note);
+  }
+
+  void createNewNote() {
+    int id = getNotes().length;
+
+    Note newNote = Note(id: id, text: "");
+
+    goToNotePage(newNote, true);
+  }
+
+  void goToNotePage(Note note, bool isNewNote) {
+    Get.to(EditingNotePage(note: note, isNewNote: isNewNote));
   }
 }

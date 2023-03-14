@@ -11,13 +11,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(NoteController());
     return Scaffold(
       backgroundColor: CupertinoColors.secondarySystemBackground,
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         backgroundColor: CColors.mainColor,
         onPressed: () {
-          Get.to(const EditingNotePage());
+          controller.createNewNote();
         },
         child: const Icon(Icons.add),
       ),
@@ -33,16 +34,27 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            CupertinoListSection.insetGrouped(
-              children: NoteController()
-                  .allNotes
-                  .map((e) => CupertinoListTile(
-                        title: Text(e.text),
-                        onTap: () {
-                          Get.to(const EditingNotePage());
-                        },
-                      ))
-                  .toList(),
+            Obx(
+              () => CupertinoListSection.insetGrouped(
+                  children: controller.allNotes
+                      .map((e) => CupertinoListTile(
+                            trailing: IconButton(
+                              icon: const Icon(
+                                Icons.delete,
+                                color: CColors.darkSubtitle,
+                              ),
+                              onPressed: () {
+                                controller.deleteNote(e);
+                              },
+                            ),
+                            title: Text(e.text),
+                            onTap: () {
+                              // controller.quillController.value.document.toPlainText();
+
+                              Get.to(EditingNotePage(note: e, isNewNote: false));
+                            },
+                          ))
+                      .toList()),
             )
           ],
         ),
