@@ -7,12 +7,11 @@ import 'package:notes_app/utils/theme.dart';
 
 class EditingNotePage extends StatelessWidget {
   final Note? note;
-  final bool isNewNote;
-  const EditingNotePage({super.key, this.note, required this.isNewNote});
+  const EditingNotePage({super.key, this.note});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NoteController());
+    final controller = Get.put(NoteController(note));
 
     return Scaffold(
       appBar: AppBar(
@@ -20,13 +19,14 @@ class EditingNotePage extends StatelessWidget {
         backgroundColor: CColors.mainColor,
         leading: IconButton(
             onPressed: () {
-              if (controller.quillController.value.document.isEmpty()) {
+              if (controller.quillController.document.isEmpty()) {
                 Get.back();
               } else {
-                String text = controller.quillController.value.document.toPlainText();
-
-                controller.addNote(Note(id: controller.allNotes.length + 2, text: text));
-
+                if (note == null) {
+                  controller.addNote();
+                } else {
+                  controller.updateNote();
+                }
                 Get.back();
               }
             },
@@ -37,7 +37,7 @@ class EditingNotePage extends StatelessWidget {
         child: Column(
           children: [
             QuillToolbar.basic(
-              controller: controller.quillController.value,
+              controller: controller.quillController,
               iconTheme:
                   const QuillIconTheme(iconSelectedFillColor: CColors.mainColor, borderRadius: 12),
             ),
@@ -45,7 +45,7 @@ class EditingNotePage extends StatelessWidget {
               height: 16,
             ),
             QuillEditor.basic(
-              controller: controller.quillController.value,
+              controller: controller.quillController,
               readOnly: false,
             )
           ],

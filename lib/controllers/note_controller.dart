@@ -1,43 +1,51 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:get/get.dart';
-import 'package:notes_app/screens/editing_note_page.dart';
+import 'package:notes_app/const.dart';
 
 import '../models/note.dart';
 
 class NoteController extends GetxController {
-  final allNotes =
-      <Note>[Note(id: 0, text: "Love yourself more"), Note(id: 1, text: "Drink water")].obs;
+  NoteController(this.note);
 
-  Rx<QuillController> quillController = QuillController.basic().obs;
-  List<Note> getNotes() {
-    return allNotes;
+  final Note? note;
+
+  late final QuillController quillController;
+
+  @override
+  void onInit() {
+    quillController = QuillController(
+      selection: const TextSelection.collapsed(offset: 0),
+      document: note?.document ??
+          Document.fromJson([
+            {"insert": "\n"}
+          ]),
+    );
+
+    super.onInit();
   }
 
-  void addNote(Note note) {
-    allNotes.add(note);
+  void addNote() {
+    List<dynamic> data = quillController.document.toDelta().toJson();
+    final note = Note(id: DateTime.now().millisecondsSinceEpoch, data: data);
+    Const.allNotes.add(note);
   }
 
-  void updateNote(Note note, String text) {
-    for (int i = 0; i < allNotes.length; i++) {
-      if (note.id == allNotes[i].id) {
-        allNotes[i].text = text;
-      }
+  void updateNote() {
+    if (note == null) return;
+    List<dynamic> data = quillController.document.toDelta().toJson();
+    final idx = Const.allNotes.indexWhere((element) => element.id == note!.id);
+    if (idx != -1) {
+      Const.allNotes[idx] = note!.copyWith(data: data);
+      Const.allNotes.refresh();
     }
   }
 
   void deleteNote(Note note) {
-    allNotes.remove(note);
-  }
-
-  void createNewNote() {
-    int id = getNotes().length;
-
-    Note newNote = Note(id: id, text: "");
-
-    goToNotePage(newNote, true);
-  }
-
-  void goToNotePage(Note note, bool isNewNote) {
-    Get.to(EditingNotePage(note: note, isNewNote: isNewNote));
+    if (note == null) return;
+    final idx = Const.allNotes.indexWhere((element) => element.id == note.id);
+    if (idx != -1) {
+      Const.allNotes.removeAt(idx);
+    }
   }
 }

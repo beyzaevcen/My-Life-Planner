@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:notes_app/const.dart';
 import 'package:notes_app/screens/editing_note_page.dart';
 
-import '../controllers/note_controller.dart';
 import '../utils/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,14 +13,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NoteController());
     return Scaffold(
       backgroundColor: CupertinoColors.secondarySystemBackground,
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         backgroundColor: CColors.mainColor,
         onPressed: () {
-          controller.createNewNote();
+          Get.to(const EditingNotePage());
         },
         child: const Icon(Icons.add),
       ),
@@ -36,7 +37,7 @@ class HomePage extends StatelessWidget {
             ),
             Obx(
               () => CupertinoListSection.insetGrouped(
-                  children: controller.allNotes
+                  children: Const.allNotes
                       .map((e) => CupertinoListTile(
                             trailing: IconButton(
                               icon: const Icon(
@@ -44,14 +45,19 @@ class HomePage extends StatelessWidget {
                                 color: CColors.darkSubtitle,
                               ),
                               onPressed: () {
-                                controller.deleteNote(e);
+                                final idx =
+                                    Const.allNotes.indexWhere((element) => element.id == e.id);
+                                if (idx != -1) {
+                                  Const.allNotes.removeAt(idx);
+                                }
                               },
                             ),
-                            title: Text(e.text),
+                            title: Text(
+                                "${e.document.toPlainText().substring(0, min(e.document.toPlainText().length, 50))}..."),
                             onTap: () {
-                              // controller.quillController.value.document.toPlainText();
+                              // controller.quillController.value.document.toPlainText() = e.text;
 
-                              Get.to(EditingNotePage(note: e, isNewNote: false));
+                              Get.to(EditingNotePage(note: e));
                             },
                           ))
                       .toList()),
