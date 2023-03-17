@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:notes_app/const.dart';
 
 import '../models/note.dart';
@@ -28,6 +31,7 @@ class NoteController extends GetxController {
   void addNote() {
     List<dynamic> data = quillController.document.toDelta().toJson();
     final note = Note(id: DateTime.now().millisecondsSinceEpoch, data: data);
+
     Const.allNotes.add(note);
   }
 
@@ -47,5 +51,11 @@ class NoteController extends GetxController {
     if (idx != -1) {
       Const.allNotes.removeAt(idx);
     }
+  }
+
+  void putBox() async {
+    final box = Hive.box("Notes");
+
+    await box.put(DateTime.now().millisecondsSinceEpoch, jsonEncode(<Note>{}));
   }
 }
