@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
-import 'package:notes_app/const.dart';
+import 'package:notes_app/controllers/home_controller.dart';
+import 'package:notes_app/data/hive_database.dart';
 
 import '../models/note.dart';
 
@@ -30,32 +28,25 @@ class NoteController extends GetxController {
 
   void addNote() {
     List<dynamic> data = quillController.document.toDelta().toJson();
-    final note = Note(id: DateTime.now().millisecondsSinceEpoch, data: data);
+    final key = DateTime.now().millisecondsSinceEpoch.toString();
 
-    Const.allNotes.add(note);
+    final note = Note(id: key, data: data);
+
+    HiveDataBase.addBox(note);
+    Get.find<HomeController>().notes.add(note);
   }
 
-  void updateNote() {
+  void updateNote(String key) {
+    final controller = Get.find<HomeController>();
+
     if (note == null) return;
     List<dynamic> data = quillController.document.toDelta().toJson();
-    final idx = Const.allNotes.indexWhere((element) => element.id == note!.id);
+    final idx = controller.notes.indexWhere((e) => e.id == note!.id);
     if (idx != -1) {
-      Const.allNotes[idx] = note!.copyWith(data: data);
-      Const.allNotes.refresh();
+      controller.notes[idx] = note!.copyWith(data: data);
+      HiveDataBase.addBox(note!);
+
+      controller.notes.refresh();
     }
-  }
-
-  void deleteNote(Note note) {
-    if (note == null) return;
-    final idx = Const.allNotes.indexWhere((element) => element.id == note.id);
-    if (idx != -1) {
-      Const.allNotes.removeAt(idx);
-    }
-  }
-
-  void putBox() async {
-    final box = Hive.box("Notes");
-
-    await box.put(DateTime.now().millisecondsSinceEpoch, jsonEncode(<Note>{}));
   }
 }

@@ -19,16 +19,14 @@ class EditingNotePage extends StatelessWidget {
         backgroundColor: CColors.mainColor,
         leading: IconButton(
             onPressed: () {
-              if (controller.quillController.document.isEmpty()) {
-                Get.back();
-              } else {
+              if (!controller.quillController.document.isEmpty()) {
                 if (note == null) {
                   controller.addNote();
                 } else {
-                  controller.updateNote();
+                  controller.updateNote(note!.id);
                 }
-                Get.back();
               }
+              Get.back();
             },
             icon: const Icon(Icons.navigate_before_outlined)),
       ),
@@ -41,9 +39,7 @@ class EditingNotePage extends StatelessWidget {
               iconTheme:
                   const QuillIconTheme(iconSelectedFillColor: CColors.mainColor, borderRadius: 12),
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             QuillEditor.basic(
               controller: controller.quillController,
               readOnly: false,
