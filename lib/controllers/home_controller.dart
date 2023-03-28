@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notes_app/data/hive_database.dart';
 import 'package:notes_app/models/note.dart';
+
+import '../widgets/delete_pasword.dart';
 
 class HomeController extends GetxController {
   final notes = <Note>[].obs;
@@ -15,11 +16,14 @@ class HomeController extends GetxController {
   }
 
   void deleteNote(String id) {
-    final idx = notes.indexWhere((element) => element.id == id);
-    if (idx != -1) {
-      HiveDataBase.deleteBox(id);
+    // final idx = notes.indexWhere((element) => element.id == id);
+    Get.dialog(DeletePassword(
+      id: id,
+    ));
+    // if (idx != -1) {
+    // HiveDataBase.deleteBox(id);
 
-      notes.removeAt(idx);
-    }
+    //  notes.removeAt(idx);
+    // }
   }
 }
