@@ -16,7 +16,7 @@ class CColors {
   static const iconColor = Color(0xff434343);
   static const settingsColor = Color(0xff202020);
   static const textTitle = Color(0xffFFA33F);
-  static const blue = Color.fromARGB(255, 128, 176, 225);
+  static const blue = Color.fromARGB(255, 16, 109, 202);
   static const pink = Color(0xffFF6A9F);
   static const green = Color.fromARGB(255, 9, 180, 106);
 

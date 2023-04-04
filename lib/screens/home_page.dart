@@ -24,13 +24,14 @@ class HomePage extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 75, left: 16, right: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
+        child: ListView(
           children: [
-            const Text(
-              "My Notes",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            const Center(
+              child: Text(
+                "My Notes",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(height: 8),
             Obx(
