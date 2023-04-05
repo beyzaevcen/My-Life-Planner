@@ -62,48 +62,51 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a valid password';
-                  }
-                  return null;
-                },
-                controller: controller.password,
-                decoration: InputDecoration(
-                  suffixIcon: Obx(() => IconButton(
-                        onPressed: () {
-                          if (controller.passwordShow.value == false) {
-                            controller.passwordShow.value = true;
-                          } else {
-                            controller.passwordShow.value = false;
-                          }
-                        },
-                        icon: controller.passwordShow.value
-                            ? Icon(
-                                FontAwesomeIcons.eyeSlash,
-                                color: CColors.black.withOpacity(0.5),
-                              )
-                            : Icon(
-                                FontAwesomeIcons.eye,
-                                color: CColors.black.withOpacity(0.5),
-                              ),
-                      )),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(color: CColors.mainColor, width: 2)),
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                  filled: true,
-                  fillColor: CColors.white,
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  hintText: "Password",
-                ),
-              ),
+              child: Obx(() => TextFormField(
+                    obscureText: controller.passwordShow.value,
+                    keyboardType: TextInputType.visiblePassword,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a valid password';
+                      }
+                      return null;
+                    },
+                    controller: controller.password,
+                    decoration: InputDecoration(
+                      suffixIcon: Obx(
+                        () => IconButton(
+                          onPressed: () {
+                            if (controller.passwordShow.value == false) {
+                              controller.passwordShow.value = true;
+                            } else {
+                              controller.passwordShow.value = false;
+                            }
+                          },
+                          icon: controller.passwordShow.value
+                              ? Icon(
+                                  FontAwesomeIcons.eyeSlash,
+                                  color: CColors.black.withOpacity(0.5),
+                                )
+                              : Icon(
+                                  FontAwesomeIcons.eye,
+                                  color: CColors.black.withOpacity(0.5),
+                                ),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: CColors.mainColor, width: 2)),
+                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                      filled: true,
+                      fillColor: CColors.white,
+                      alignLabelWithHint: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      hintText: "Password",
+                    ),
+                  )),
             ),
             const SizedBox(height: 16),
             Padding(

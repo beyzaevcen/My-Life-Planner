@@ -1,55 +1,92 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:notes_app/controllers/home_controller.dart';
-import 'package:notes_app/screens/editing_note_page.dart';
-import 'package:notes_app/widgets/list_item.dart';
-
-import '../utils/theme.dart';
+import 'package:notes_app/screens/notes_page.dart';
+import 'package:notes_app/screens/todo_page.dart';
+import 'package:notes_app/utils/theme.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
-
     return Scaffold(
-      backgroundColor: CupertinoColors.secondarySystemBackground,
-      floatingActionButton: FloatingActionButton(
-        elevation: 0,
-        backgroundColor: CColors.mainColor,
-        onPressed: () => Get.to(const EditingNotePage()),
-        child: const Icon(Icons.add),
-      ),
+      backgroundColor: CColors.backgroundcolor,
       body: Padding(
-        padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
-        child: ListView(
+        padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Center(
-              child: Text(
-                "My Notes",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
+            const Text(
+              "ꕤ",
+              style: TextStyle(fontSize: 32),
             ),
-            const SizedBox(height: 8),
-            Obx(
-              () => controller.notes.isNotEmpty
-                  ? CupertinoListSection.insetGrouped(
-                      children: controller.notes
-                          .map((e) => ListItem(
-                                note: e,
-                                onTap: () => Get.to(EditingNotePage(note: e)),
-                                onDeleted: () => controller.deleteNote(e.id),
-                              ))
-                          .toList(),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.only(top: 200, left: 16, right: 16),
-                      child: Lottie.asset("assets/gif.json"),
-                    ),
-            )
+            const SizedBox(
+              height: 16,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.note_add_outlined,
+                size: 42,
+              ),
+              visualDensity: const VisualDensity(vertical: 4),
+              title: Text(
+                "My Notes",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: CColors.black.withOpacity(0.6)),
+              ),
+              shape: const RoundedRectangleBorder(
+                  side: BorderSide(width: 1),
+                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+              onTap: () {
+                Get.to(const NotesPage());
+              },
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.toc_outlined,
+                size: 42,
+              ),
+              visualDensity: const VisualDensity(vertical: 4),
+              title: Text(
+                "To Do",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: CColors.black.withOpacity(0.6)),
+              ),
+              shape: const RoundedRectangleBorder(
+                  side: BorderSide(width: 1),
+                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+              onTap: () {
+                Get.to(const ToDoPage());
+              },
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.book,
+                size: 42,
+              ),
+              visualDensity: const VisualDensity(vertical: 4),
+              title: Text(
+                "Diary",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: CColors.black.withOpacity(0.6)),
+              ),
+              shape: const RoundedRectangleBorder(
+                  side: BorderSide(width: 1),
+                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+              onTap: () {},
+            ),
           ],
         ),
       ),

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class CColors {
   static const mainColor = Color(0xff757397);
   static const white = Colors.white;
+
   static const textColor = Color(0xffCECECE);
-  static const backgroundcolor = Color(0xff161616);
+  static const backgroundcolor = Color(0xffF2F2F7);
   static const foregroundBlack = Color(0xff202020);
   static const subtitleColor = Color(0xff979797);
   static const black = Colors.black;
