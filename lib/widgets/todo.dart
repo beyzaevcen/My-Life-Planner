@@ -14,11 +14,7 @@ class ToDoWidget extends GetView<ToDoController> {
         ListTile(
           title: Text(controller.todoList.map((e) => Text(e.text)).toString()),
           contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-            side: const BorderSide(color: CColors.mainColor),
-          ),
-          trailing: const Icon(
+          leading: const Icon(
             Icons.circle_outlined,
             color: CColors.mainColor,
           ),

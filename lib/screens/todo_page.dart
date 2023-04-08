@@ -13,14 +13,51 @@ class ToDoPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: CColors.backgroundcolor,
       body: Padding(
-        padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
+        padding: const EdgeInsets.only(top: 30, left: 8.0, right: 8.0),
         child: ListView(
           children: [
+            const Center(
+              child: Text(
+                "My ToDo's",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(height: 12),
             const ToDoWidget(),
             Obx(
               () => controller.isTapped.value
-                  ? const Text("Hello")
-                  : IconButton(onPressed: controller.isTapped.toggle, icon: const Icon(Icons.add)),
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        controller: controller.task,
+                        decoration: InputDecoration(
+                          fillColor: CColors.backgroundcolor,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(color: CColors.mainColor, width: 2)),
+                          enabledBorder:
+                              OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                          filled: true,
+                          alignLabelWithHint: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          hintText: "Add Task",
+                        ),
+                      ),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        IconButton(
+                            onPressed: controller.isTapped.toggle,
+                            icon: const Icon(Icons.add),
+                            color: CColors.mainColor),
+                        const Text("Add Task")
+                      ],
+                    ),
             )
           ],
         ),

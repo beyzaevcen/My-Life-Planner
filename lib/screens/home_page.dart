@@ -9,7 +9,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int currentindex = 0;
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: CColors.backgroundcolor,
+        selectedItemColor: CColors.mainColor,
+        currentIndex: currentindex,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.circle), label: "Profile"),
+        ],
+      ),
       backgroundColor: CColors.backgroundcolor,
       body: Padding(
         padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
