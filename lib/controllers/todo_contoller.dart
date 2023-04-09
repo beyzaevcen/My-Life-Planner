@@ -22,10 +22,15 @@ class ToDoController extends GetxController {
   void addTodo() {
     final todo = ToDo(
         whenCreated: DateTime.now().millisecondsSinceEpoch.toString(),
-        text: task.toString(),
+        text: task.text,
         id: "",
         isCompleted: false);
 
     todoList.add(todo);
+    task.clear();
+  }
+
+  void updateTodo(ToDo toDo) {
+    final updatedTodo = toDo.copyWith(isCompleted: !toDo.isCompleted);
   }
 }

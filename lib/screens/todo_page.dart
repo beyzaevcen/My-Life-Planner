@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
 import 'package:notes_app/utils/theme.dart';
-import 'package:notes_app/widgets/todo.dart';
 
 class ToDoPage extends StatelessWidget {
   const ToDoPage({super.key});
@@ -23,7 +22,45 @@ class ToDoPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            const ToDoWidget(),
+            Column(
+              children: controller.todoList
+                  .map(
+                    (e) => Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: ListTile(
+                          tileColor: e.isCompleted ? CColors.mainColor : null,
+                          leading: e.isCompleted
+                              ? const Icon(
+                                  Icons.circle,
+                                  color: CColors.mainColor,
+                                )
+                              : const Icon(
+                                  Icons.circle_outlined,
+                                  color: CColors.mainColor,
+                                ),
+                          onTap: () {
+                            controller.updateTodo(e);
+                          },
+                          title: Text(
+                            e.text,
+                            style: TextStyle(
+                                color: e.isCompleted ? Colors.white : Colors.black,
+                                decoration: e.isCompleted
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          trailing: IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              color: e.isCompleted ? CColors.white : CColors.darkSubtitle,
+                            ),
+                            onPressed: () {},
+                          ),
+                        )),
+                  )
+                  .toList(),
+            ),
             Obx(
               () => controller.isTapped.value
                   ? Padding(
@@ -33,6 +70,15 @@ class ToDoPage extends StatelessWidget {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: controller.task,
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                controller.addTodo();
+                                controller.isTapped.value = false;
+                              },
+                              icon: const Icon(
+                                Icons.add,
+                                color: CColors.mainColor,
+                              )),
                           fillColor: CColors.backgroundcolor,
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
