@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class CColors {
   static const mainColor = Color(0xff757397);
   static const white = Colors.white;
-
+  static const pink = Color(0xffF1E4E1);
   static const textColor = Color(0xffCECECE);
   static const backgroundcolor = Color(0xffF2F2F7);
   static const foregroundBlack = Color(0xff202020);
   static const subtitleColor = Color(0xff979797);
   static const black = Colors.black;
-  static const red = Colors.red;
+  static const purple = Color(0xffDCDAFA);
   static const darkSubtitle = Color(0xff92928E);
   static const borderColor = Color(0xff335373);
   static const sideColor = Color(0x4cb7b7b3);
@@ -18,7 +18,7 @@ class CColors {
   static const settingsColor = Color(0xff202020);
   static const textTitle = Color(0xffFFA33F);
   static const blue = Color.fromARGB(255, 16, 109, 202);
-  static const pink = Color(0xffFF6A9F);
+
   static const green = Color.fromARGB(255, 9, 180, 106);
 
   static const Map<int, Color> primarySwatchColors = {

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:notes_app/controllers/home_controller.dart';
 
 import '../data/hive_database.dart';
-import '../utils/theme.dart';
 
 class DeletePassword extends StatelessWidget {
   final String id;
@@ -43,7 +42,7 @@ class DeletePassword extends StatelessWidget {
                 },
                 child: const Text(
                   "Delete",
-                  style: TextStyle(color: CColors.red, fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 20),
                 ))
           ],
         ),
