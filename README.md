@@ -1,4 +1,4 @@
-# notes_app
+# My Life Planner
 
 A new Flutter project.
 
