@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:notes_app/screens/diary_page.dart';
 import 'package:notes_app/screens/notes_page.dart';
 import 'package:notes_app/screens/todo_page.dart';
 import 'package:notes_app/utils/theme.dart';
@@ -95,6 +96,7 @@ class HomePage extends StatelessWidget {
                         )),
                   ),
                   InkWell(
+                    onTap: () => Get.to(const DiaryPage()),
                     child: Container(
                         decoration: BoxDecoration(
                           color: CColors.purple.withOpacity(0.3),

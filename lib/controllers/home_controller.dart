@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/models/note.dart';
 
-import '../widgets/delete_pasword.dart';
+import '../widgets/delete_note.dart';
 
 class HomeController extends GetxController {
   final notes = <Note>[].obs;
@@ -19,7 +19,7 @@ class HomeController extends GetxController {
   }
 
   void deleteNote(String id) {
-    Get.dialog(DeletePassword(
+    Get.dialog(DeleteNote(
       id: id,
     ));
   }

@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 import 'package:notes_app/controllers/home_controller.dart';
 
 import '../data/hive_database.dart';
+import '../utils/theme.dart';
 
-class DeletePassword extends StatelessWidget {
+class DeleteNote extends StatelessWidget {
   final String id;
-  const DeletePassword({super.key, required this.id});
+  const DeleteNote({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,12 @@ class DeletePassword extends StatelessWidget {
               onPressed: () {
                 Get.back();
               },
-              child: const Text(
+              child: Text(
                 "Cancel",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: CColors.black.withOpacity(0.6)),
               ),
             ),
             TextButton(
@@ -42,7 +46,7 @@ class DeletePassword extends StatelessWidget {
                 },
                 child: const Text(
                   "Delete",
-                  style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 20),
                 ))
           ],
         ),

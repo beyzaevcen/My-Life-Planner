@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
 import 'package:notes_app/utils/theme.dart';
+import 'package:notes_app/widgets/delete_todo.dart';
 
 class ToDoPage extends StatelessWidget {
   const ToDoPage({super.key});
@@ -22,44 +23,47 @@ class ToDoPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            Column(
-              children: controller.todoList
-                  .map(
-                    (e) => Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: ListTile(
-                          tileColor: e.isCompleted ? CColors.mainColor : null,
-                          leading: e.isCompleted
-                              ? const Icon(
-                                  Icons.circle,
-                                  color: CColors.mainColor,
-                                )
-                              : const Icon(
-                                  Icons.circle_outlined,
-                                  color: CColors.mainColor,
+            Obx(
+              () => Column(
+                  children: controller.todoList
+                      .map(
+                        (e) => Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: ListTile(
+                              tileColor: e.isCompleted ? CColors.mainColor : null,
+                              leading: e.isCompleted
+                                  ? const Icon(
+                                      Icons.circle,
+                                      color: CColors.mainColor,
+                                    )
+                                  : const Icon(
+                                      Icons.circle_outlined,
+                                      color: CColors.mainColor,
+                                    ),
+                              onTap: () {
+                                controller.updateTodo(e);
+                              },
+                              title: Text(
+                                e.text,
+                                style: TextStyle(
+                                    color: e.isCompleted ? Colors.white : Colors.black,
+                                    decoration: e.isCompleted
+                                        ? TextDecoration.lineThrough
+                                        : TextDecoration.none),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                              trailing: IconButton(
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: e.isCompleted ? CColors.white : CColors.darkSubtitle,
                                 ),
-                          onTap: () {
-                            controller.updateTodo(e);
-                          },
-                          title: Text(
-                            e.text,
-                            style: TextStyle(
-                                color: e.isCompleted ? Colors.white : Colors.black,
-                                decoration: e.isCompleted
-                                    ? TextDecoration.lineThrough
-                                    : TextDecoration.none),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.delete,
-                              color: e.isCompleted ? CColors.white : CColors.darkSubtitle,
-                            ),
-                            onPressed: () {},
-                          ),
-                        )),
-                  )
-                  .toList(),
+                                onPressed: () {
+                                  Get.dialog(DeleteToDo(id: e.id));
+                                },
+                              ),
+                            )),
+                      )
+                      .toList()),
             ),
             Obx(
               () => controller.isTapped.value

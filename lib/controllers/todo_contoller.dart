@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../models/todo.dart';
 
 class ToDoController extends GetxController {
-  final List<ToDo> todoList = [];
+  final todoList = <ToDo>[].obs;
   final task = TextEditingController();
   final taskText = "".obs;
   final isTapped = false.obs;
@@ -23,7 +23,7 @@ class ToDoController extends GetxController {
     final todo = ToDo(
         whenCreated: DateTime.now().millisecondsSinceEpoch.toString(),
         text: task.text,
-        id: "",
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
         isCompleted: false);
 
     todoList.add(todo);
@@ -32,5 +32,9 @@ class ToDoController extends GetxController {
 
   void updateTodo(ToDo toDo) {
     final updatedTodo = toDo.copyWith(isCompleted: !toDo.isCompleted);
+  }
+
+  void deleteToDo(ToDo toDo) {
+    todoList.remove(toDo);
   }
 }
