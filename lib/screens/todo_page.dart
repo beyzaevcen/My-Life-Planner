@@ -11,9 +11,19 @@ class ToDoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ToDoController());
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CColors.backgroundcolor,
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () => Get.back(),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: CColors.black,
+            )),
+      ),
       backgroundColor: CColors.backgroundcolor,
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 8.0, right: 8.0),
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
         child: ListView(
           children: [
             const Center(

@@ -20,17 +20,19 @@ class DiaryPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     icon: const Icon(
-                      Icons.search,
+                      Icons.arrow_back_ios,
                       size: 36,
                     )),
                 IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.menu,
+                      Icons.search,
                       size: 36,
-                    ))
+                    )),
               ],
             ),
           ),
@@ -53,14 +55,136 @@ class DiaryPage extends StatelessWidget {
           //Month Cards
           Expanded(
               child: Container(
-            color: CColors.mainColor,
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: PageView(
+              controller: PageController(
+                initialPage: 0,
+                viewportFraction: 0.75,
+              ),
+              scrollDirection: Axis.horizontal,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: CColors.mainColor,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //month
+                        const Text(
+                          "12",
+                          textScaleFactor: 3.5,
+                          style: TextStyle(color: CColors.white),
+                        ),
+                        const Text(
+                          "APR",
+                          textScaleFactor: 2.5,
+                          style: TextStyle(color: CColors.white),
+                        ),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Column(
+                              children: [
+                                const Text(
+                                  "selam",
+                                  style: TextStyle(color: CColors.white),
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  height: 3.0,
+                                  color: Colors.white30,
+                                ),
+                              ],
+                            )),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.more_vert_outlined,
+                                  color: CColors.white,
+                                ))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           )),
           const SizedBox(
             height: 20,
           ),
           //Action Buttons
           Row(
-            children: const [],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 160,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: CColors.mainColor, width: 1),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(Icons.sunny),
+                      ),
+                      Expanded(
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text("Today"),
+                          Text("12/04/2002"),
+                        ],
+                      )),
+                    ],
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration:
+                          const BoxDecoration(shape: BoxShape.circle, color: CColors.mainColor),
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.edit_outlined,
+                            color: CColors.white,
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration:
+                          const BoxDecoration(shape: BoxShape.circle, color: CColors.mainColor),
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.calendar_month,
+                            color: CColors.white,
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
           const SizedBox(
             height: 100,

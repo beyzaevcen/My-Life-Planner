@@ -16,6 +16,17 @@ class NotesPage extends StatelessWidget {
     final controller = Get.put(HomeController());
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CColors.backgroundcolor,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: CColors.black,
+          ),
+          onPressed: () => Get.back(),
+        ),
+      ),
       backgroundColor: CupertinoColors.secondarySystemBackground,
       floatingActionButton: FloatingActionButton(
         elevation: 0,
@@ -24,7 +35,7 @@ class NotesPage extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: ListView(
           children: [
             const Center(
