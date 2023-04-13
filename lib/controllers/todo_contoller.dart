@@ -8,6 +8,8 @@ class ToDoController extends GetxController {
   final task = TextEditingController();
   final taskText = "".obs;
   final isTapped = false.obs;
+  final isCompleted = "".obs;
+
   @override
   void onInit() {
     todoList.add(ToDo(
@@ -31,7 +33,8 @@ class ToDoController extends GetxController {
   }
 
   void updateTodo(ToDo toDo) {
-    final updatedTodo = toDo.copyWith(isCompleted: !toDo.isCompleted);
+    toDo.copyWith(isCompleted: toDo.isCompleted);
+    print(toDo.isCompleted);
   }
 
   void deleteToDo(ToDo toDo) {

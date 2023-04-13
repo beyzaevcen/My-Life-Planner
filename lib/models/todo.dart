@@ -2,7 +2,7 @@ class ToDo {
   final String whenCreated;
   final String text;
   final String id;
-  final bool isCompleted;
+  late bool isCompleted;
   ToDo({
     required this.whenCreated,
     required this.text,

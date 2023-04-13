@@ -40,7 +40,6 @@ class ToDoPage extends StatelessWidget {
                         (e) => Padding(
                             padding: const EdgeInsets.only(bottom: 8),
                             child: ListTile(
-                              tileColor: e.isCompleted ? CColors.mainColor : null,
                               leading: e.isCompleted
                                   ? const Icon(
                                       Icons.circle,
@@ -51,21 +50,24 @@ class ToDoPage extends StatelessWidget {
                                       color: CColors.mainColor,
                                     ),
                               onTap: () {
+                                e.isCompleted = !e.isCompleted;
+                                e.isCompleted == false
+                                    ? controller.isCompleted.value = ""
+                                    : controller.isCompleted.value = e.id;
+                                print(controller.isCompleted.value);
                                 controller.updateTodo(e);
                               },
                               title: Text(
                                 e.text,
                                 style: TextStyle(
-                                    color: e.isCompleted ? Colors.white : Colors.black,
                                     decoration: e.isCompleted
                                         ? TextDecoration.lineThrough
                                         : TextDecoration.none),
                               ),
                               contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
                               trailing: IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.delete,
-                                  color: e.isCompleted ? CColors.white : CColors.darkSubtitle,
                                 ),
                                 onPressed: () {
                                   Get.dialog(DeleteToDo(id: e.id));
