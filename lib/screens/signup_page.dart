@@ -229,7 +229,9 @@ class SignUpPage extends StatelessWidget {
                     backgroundColor: CColors.mainColor,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.signUp();
+                  },
                   child: const Text(
                     "Sign Up",
                     style: TextStyle(fontSize: 20),

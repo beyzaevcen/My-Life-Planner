@@ -3,17 +3,22 @@ import 'package:get/get.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
 import 'package:notes_app/utils/theme.dart';
 
-class DeleteToDo extends StatelessWidget {
-  final String id;
-  const DeleteToDo({super.key, required this.id});
+class DeleteToDo extends GetView<ToDoController> {
+  final String question;
+  final Function() onDeleted;
+
+  const DeleteToDo({
+    super.key,
+    required this.question,
+    required this.onDeleted,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ToDoController());
     return AlertDialog(
-      title: const Center(
+      title: Center(
           child: Text(
-        "Are you sure you want to delete this task?",
+        question,
         textAlign: TextAlign.center,
       )),
       actions: <Widget>[
@@ -21,9 +26,7 @@ class DeleteToDo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextButton(
-              onPressed: () {
-                Get.back();
-              },
+              onPressed: Get.back,
               child: Text(
                 "Cancel",
                 style: TextStyle(
@@ -34,9 +37,7 @@ class DeleteToDo extends StatelessWidget {
             ),
             TextButton(
                 onPressed: () {
-                  final idx = controller.todoList.indexWhere((element) => element.id == id);
-                  controller.todoList.removeAt(idx);
-
+                  onDeleted();
                   Get.back();
                 },
                 child: const Text(
@@ -48,4 +49,9 @@ class DeleteToDo extends StatelessWidget {
       ],
     );
   }
+
+  static void open(String question, Function() onDeleted) => Get.dialog(DeleteToDo(
+        question: question,
+        onDeleted: onDeleted,
+      ));
 }

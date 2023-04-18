@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/login_controller.dart';
-import 'package:notes_app/screens/home_page.dart';
 import 'package:notes_app/screens/signup_page.dart';
 
 import '../utils/theme.dart';
@@ -120,7 +119,7 @@ class LoginPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                     ),
                     onPressed: () {
-                      Get.to(const HomePage());
+                      controller.signIn();
                     },
                     child: const Text(
                       "Login",

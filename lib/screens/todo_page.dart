@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
+import 'package:notes_app/services.dart/todo_api.dart';
 import 'package:notes_app/utils/theme.dart';
 import 'package:notes_app/widgets/delete_todo.dart';
 
@@ -33,6 +35,18 @@ class ToDoPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
+            StreamBuilder(
+              stream: ToDoApi.getTodos(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CupertinoActivityIndicator(),
+                  );
+                }
+                final todos = snapshot.data!;
+                return Column(children: todos.map((e) => Text(e.text)).toList());
+              },
+            ),
             Obx(
               () => Column(
                   children: controller.todoList
@@ -50,11 +64,6 @@ class ToDoPage extends StatelessWidget {
                                       color: CColors.mainColor,
                                     ),
                               onTap: () {
-                                e.isCompleted = !e.isCompleted;
-                                e.isCompleted == false
-                                    ? controller.isCompleted.value = ""
-                                    : controller.isCompleted.value = e.id;
-                                print(controller.isCompleted.value);
                                 controller.updateTodo(e);
                               },
                               title: Text(
@@ -70,7 +79,10 @@ class ToDoPage extends StatelessWidget {
                                   Icons.delete,
                                 ),
                                 onPressed: () {
-                                  Get.dialog(DeleteToDo(id: e.id));
+                                  DeleteToDo.open(
+                                    "dmasd",
+                                    () => controller.deleteToDo(e.id),
+                                  );
                                 },
                               ),
                             )),

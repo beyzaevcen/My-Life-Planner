@@ -1,17 +1,24 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:notes_app/services.dart/todo_api.dart';
 
 import '../models/todo.dart';
 
 class ToDoController extends GetxController {
   final todoList = <ToDo>[].obs;
   final task = TextEditingController();
-  final taskText = "".obs;
   final isTapped = false.obs;
-  final isCompleted = "".obs;
+
+  late StreamSubscription<List<ToDo>> getTodosHandle;
 
   @override
   void onInit() {
+    getTodosHandle = ToDoApi.getTodos().listen((event) {
+      todoList.value = event;
+    });
+
     todoList.add(ToDo(
         whenCreated: DateTime.now().millisecondsSinceEpoch.toString(),
         text: "text",
@@ -21,23 +28,39 @@ class ToDoController extends GetxController {
     super.onInit();
   }
 
-  void addTodo() {
-    final todo = ToDo(
-        whenCreated: DateTime.now().millisecondsSinceEpoch.toString(),
-        text: task.text,
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        isCompleted: false);
+  @override
+  void onClose() {
+    getTodosHandle.cancel();
+    super.onClose();
+  }
 
-    todoList.add(todo);
+  void addTodo() async {
+    final todo = ToDo(
+      whenCreated: DateTime.now().millisecondsSinceEpoch.toString(),
+      text: task.text,
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      isCompleted: false,
+    );
+
+    await ToDoApi.createTodo(todo);
+
     task.clear();
   }
 
-  void updateTodo(ToDo toDo) {
-    toDo.copyWith(isCompleted: toDo.isCompleted);
-    print(toDo.isCompleted);
+  void updateTodo(ToDo toDo) async {
+    final newToDo = toDo.copyWith(isCompleted: !toDo.isCompleted);
+    await ToDoApi.updateTodo(newToDo);
   }
 
-  void deleteToDo(ToDo toDo) {
-    todoList.remove(toDo);
+  void deleteToDo(String id) {
+    ToDoApi.deleteToDo(id);
+  }
+
+  void complatedTask(ToDo e) {
+    final todo = e.copyWith(isCompleted: true);
+    final i = todoList.indexWhere((e) => e.whenCreated == todo.whenCreated);
+    if (i != -1) {
+      todoList[i] = todo;
+    }
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
+import 'package:notes_app/screens/home_page.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../models/users_model.dart';
@@ -23,6 +24,11 @@ class AuthController extends GetxController {
   final loginLoading = true.obs;
 
   String? appleName;
+
+  @override
+  void onInit() {
+    user.bindStream(_auth.authStateChanges());
+  }
 
   Future<void> signIn(
     String platform, {
@@ -72,6 +78,7 @@ class AuthController extends GetxController {
       //   }
       //   return;
       // }
+      Get.to(const HomePage());
       return;
     } on FirebaseAuthException catch (err) {
       Helper.showError("error".tr, err.code.tr);
@@ -94,6 +101,7 @@ class AuthController extends GetxController {
       if (!result) {
         throw "user_creation_failed".tr;
       }
+      Get.to(const HomePage());
       profile.value = user;
       Get.back();
       Helper.showToast('registration_successful'.tr);
