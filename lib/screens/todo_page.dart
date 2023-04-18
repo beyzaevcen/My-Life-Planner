@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
-import 'package:notes_app/services.dart/todo_api.dart';
 import 'package:notes_app/utils/theme.dart';
 import 'package:notes_app/widgets/delete_todo.dart';
 
@@ -35,6 +33,7 @@ class ToDoPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
+            /*
             StreamBuilder(
               stream: ToDoApi.getTodos(),
               builder: (context, snapshot) {
@@ -47,6 +46,7 @@ class ToDoPage extends StatelessWidget {
                 return Column(children: todos.map((e) => Text(e.text)).toList());
               },
             ),
+            */
             Obx(
               () => Column(
                   children: controller.todoList

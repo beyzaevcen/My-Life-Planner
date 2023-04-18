@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/home_controller.dart';
-import 'package:notes_app/data/hive_database.dart';
+import 'package:notes_app/services.dart/notes_api.dart';
 
 import '../models/note.dart';
 
@@ -31,8 +31,9 @@ class NoteController extends GetxController {
     final key = DateTime.now().millisecondsSinceEpoch.toString();
 
     final note = Note(id: key, data: data);
+    NotesApi.createNote(note);
 
-    HiveDataBase.addBox(note);
+    //HiveDataBase.addBox(note);
     Get.find<HomeController>().notes.add(note);
   }
 
@@ -44,7 +45,7 @@ class NoteController extends GetxController {
     final idx = controller.notes.indexWhere((e) => e.id == note!.id);
     if (idx != -1) {
       controller.notes[idx] = note!.copyWith(data: data);
-      HiveDataBase.addBox(note!);
+      NotesApi.updateTodo(note!);
 
       controller.notes.refresh();
     }
