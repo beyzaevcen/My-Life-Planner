@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
 import 'package:notes_app/utils/theme.dart';
 import 'package:notes_app/widgets/delete_todo.dart';
@@ -48,46 +49,48 @@ class ToDoPage extends StatelessWidget {
             ),
             */
             Obx(
-              () => Column(
-                  children: controller.todoList
-                      .map(
-                        (e) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: ListTile(
-                              leading: e.isCompleted
-                                  ? const Icon(
-                                      Icons.circle,
-                                      color: CColors.mainColor,
-                                    )
-                                  : const Icon(
-                                      Icons.circle_outlined,
-                                      color: CColors.mainColor,
+              () => controller.todoList.isNotEmpty
+                  ? Column(
+                      children: controller.todoList
+                          .map(
+                            (e) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: ListTile(
+                                  leading: e.isCompleted
+                                      ? const Icon(
+                                          Icons.circle,
+                                          color: CColors.mainColor,
+                                        )
+                                      : const Icon(
+                                          Icons.circle_outlined,
+                                          color: CColors.mainColor,
+                                        ),
+                                  onTap: () {
+                                    controller.updateTodo(e);
+                                  },
+                                  title: Text(
+                                    e.text,
+                                    style: TextStyle(
+                                        decoration: e.isCompleted
+                                            ? TextDecoration.lineThrough
+                                            : TextDecoration.none),
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                  trailing: IconButton(
+                                    icon: const Icon(
+                                      Icons.delete,
                                     ),
-                              onTap: () {
-                                controller.updateTodo(e);
-                              },
-                              title: Text(
-                                e.text,
-                                style: TextStyle(
-                                    decoration: e.isCompleted
-                                        ? TextDecoration.lineThrough
-                                        : TextDecoration.none),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-                              trailing: IconButton(
-                                icon: const Icon(
-                                  Icons.delete,
-                                ),
-                                onPressed: () {
-                                  DeleteToDo.open(
-                                    "dmasd",
-                                    () => controller.deleteToDo(e.id),
-                                  );
-                                },
-                              ),
-                            )),
-                      )
-                      .toList()),
+                                    onPressed: () {
+                                      DeleteToDo.open(
+                                        "dmasd",
+                                        () => controller.deleteToDo(e.id),
+                                      );
+                                    },
+                                  ),
+                                )),
+                          )
+                          .toList())
+                  : Lottie.asset("assets/newScene.json"),
             ),
             Obx(
               () => controller.isTapped.value

@@ -19,12 +19,6 @@ class ToDoController extends GetxController {
       todoList.value = event;
     });
 
-    todoList.add(ToDo(
-        whenCreated: DateTime.now().millisecondsSinceEpoch.toString(),
-        text: "text",
-        id: "id",
-        isCompleted: false));
-
     super.onInit();
   }
 

@@ -30,9 +30,7 @@ class NotesApi {
         .collection("users")
         .doc(AuthController.to.user.value!.uid)
         .collection("notes")
-        .orderBy("whenCreated", descending: true)
         .snapshots();
-
     return results.map((event) => event.docs.map((e) => Note.fromMap(e.data())).toList());
   }
 

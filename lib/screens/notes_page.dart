@@ -31,7 +31,10 @@ class NotesPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         backgroundColor: CColors.mainColor,
-        onPressed: () => Get.to(const EditingNotePage()),
+        onPressed: () {
+          print(controller.notes.length);
+          Get.to(const EditingNotePage());
+        },
         child: const Icon(Icons.add),
       ),
       body: Padding(
@@ -58,7 +61,7 @@ class NotesPage extends StatelessWidget {
                     )
                   : Padding(
                       padding: const EdgeInsets.only(top: 200, left: 16, right: 16),
-                      child: Lottie.asset("assets/gif.json"),
+                      child: Lottie.asset("assets/newScene.json"),
                     ),
             )
           ],

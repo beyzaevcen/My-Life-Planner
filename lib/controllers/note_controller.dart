@@ -26,15 +26,15 @@ class NoteController extends GetxController {
     super.onInit();
   }
 
-  void addNote() {
+  void addNote() async {
     List<dynamic> data = quillController.document.toDelta().toJson();
     final key = DateTime.now().millisecondsSinceEpoch.toString();
 
     final note = Note(id: key, data: data);
-    NotesApi.createNote(note);
+
+    await NotesApi.createNote(note);
 
     //HiveDataBase.addBox(note);
-    Get.find<HomeController>().notes.add(note);
   }
 
   void updateNote(String key) {
