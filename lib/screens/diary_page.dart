@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/diary_controller.dart';
+import 'package:notes_app/widgets/backview.dart';
 
 import '../utils/theme.dart';
 
@@ -56,65 +57,14 @@ class DiaryPage extends StatelessWidget {
           Expanded(
               child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
-            child: PageView(
-              controller: PageController(
-                initialPage: 0,
-                viewportFraction: 0.75,
-              ),
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: CColors.mainColor,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //month
-                        const Text(
-                          "12",
-                          textScaleFactor: 3.5,
-                          style: TextStyle(color: CColors.white),
-                        ),
-                        const Text(
-                          "APR",
-                          textScaleFactor: 2.5,
-                          style: TextStyle(color: CColors.white),
-                        ),
-                        const Spacer(),
-                        Row(
-                          children: [
-                            Expanded(
-                                child: Column(
-                              children: [
-                                const Text(
-                                  "selam",
-                                  style: TextStyle(color: CColors.white),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 3.0,
-                                  color: Colors.white30,
-                                ),
-                              ],
-                            )),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.more_vert_outlined,
-                                  color: CColors.white,
-                                ))
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+            child: PageView.builder(
+                controller: PageController(
+                  initialPage: 0,
+                  viewportFraction: 0.75,
+                ),
+                scrollDirection: Axis.horizontal,
+                itemCount: 12,
+                itemBuilder: (_, i) => const BackView()),
           )),
           const SizedBox(
             height: 20,
