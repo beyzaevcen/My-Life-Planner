@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../screens/diary_page.dart';
 import '../screens/notes_page.dart';
@@ -13,22 +14,37 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
-      child: Column(
-        children: [
+        padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
+        child: Column(children: [
           const Text(
             "ꕤ",
             style: TextStyle(fontSize: 32),
           ),
           const SizedBox(
-            height: 16,
+            height: 8,
           ),
-          const Text(
-            "How do you feel today?",
-            style: TextStyle(fontSize: 32),
+          InkWell(
+            onTap: () {},
+            child: Container(
+                decoration: const BoxDecoration(
+                  color: CColors.backgroundcolor,
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "How do you feel today?",
+                        style: TextStyle(fontSize: 28),
+                      ),
+                    )
+                  ],
+                )),
           ),
           const SizedBox(
-            height: 16,
+            height: 8,
           ),
           Flexible(
             child: GridView.count(
@@ -42,10 +58,10 @@ class HomeWidget extends StatelessWidget {
                   onTap: () => Get.to(const NotesPage()),
                   child: Container(
                       decoration: BoxDecoration(
-                        color: CColors.purple,
-                        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                        border: Border.all(color: CColors.purple, width: 2),
-                      ),
+                          color: CColors.white,
+                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
+                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 2.0)]),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -56,7 +72,8 @@ class HomeWidget extends StatelessWidget {
                           ),
                           Text(
                             "Notes",
-                            style: TextStyle(fontSize: 36, color: CColors.black.withOpacity(0.6)),
+                            style: GoogleFonts.comfortaa(
+                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
                           )
                         ],
                       )),
@@ -65,10 +82,10 @@ class HomeWidget extends StatelessWidget {
                   onTap: () => Get.to(const ToDoPage()),
                   child: Container(
                       decoration: BoxDecoration(
-                        color: CColors.purple.withOpacity(0.3),
-                        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                        border: Border.all(color: CColors.purple.withOpacity(0.3), width: 2),
-                      ),
+                          color: CColors.white,
+                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
+                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -79,7 +96,8 @@ class HomeWidget extends StatelessWidget {
                           ),
                           Text(
                             "ToDo",
-                            style: TextStyle(fontSize: 36, color: CColors.black.withOpacity(0.6)),
+                            style: GoogleFonts.comfortaa(
+                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
                           )
                         ],
                       )),
@@ -88,10 +106,10 @@ class HomeWidget extends StatelessWidget {
                   onTap: () => Get.to(const DiaryPage()),
                   child: Container(
                       decoration: BoxDecoration(
-                        color: CColors.purple.withOpacity(0.3),
-                        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                        border: Border.all(color: CColors.purple.withOpacity(0.3), width: 2),
-                      ),
+                          color: CColors.white,
+                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
+                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -102,7 +120,8 @@ class HomeWidget extends StatelessWidget {
                           ),
                           Text(
                             "Diary",
-                            style: TextStyle(fontSize: 36, color: CColors.black.withOpacity(0.6)),
+                            style: GoogleFonts.comfortaa(
+                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
                           )
                         ],
                       )),
@@ -110,10 +129,10 @@ class HomeWidget extends StatelessWidget {
                 InkWell(
                   child: Container(
                       decoration: BoxDecoration(
-                        color: CColors.purple,
-                        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                        border: Border.all(color: CColors.purple, width: 2),
-                      ),
+                          color: CColors.white,
+                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
+                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -124,16 +143,39 @@ class HomeWidget extends StatelessWidget {
                           ),
                           Text(
                             "Films",
-                            style: TextStyle(fontSize: 36, color: CColors.black.withOpacity(0.6)),
+                            style: GoogleFonts.comfortaa(
+                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
                           )
                         ],
                       )),
                 ),
+                InkWell(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: CColors.white,
+                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
+                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.feather,
+                            size: 50,
+                            color: CColors.black.withOpacity(0.6),
+                          ),
+                          Text(
+                            "Period Tracker",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.comfortaa(
+                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
+                          )
+                        ],
+                      )),
+                )
               ],
             ),
           )
-        ],
-      ),
-    );
+        ]));
   }
 }

@@ -22,7 +22,7 @@ class SignUpPage extends StatelessWidget {
               child: Text(
             "Sign Up",
             style: TextStyle(
-                fontSize: 30, color: CColors.black.withOpacity(0.6), fontWeight: FontWeight.bold),
+                fontSize: 30, color: CColors.black.withOpacity(0.8), fontWeight: FontWeight.bold),
           )),
           const SizedBox(
             height: 24,

@@ -82,7 +82,7 @@ class ToDoPage extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       DeleteToDo.open(
-                                        "dmasd",
+                                        "Are you sure you want to delete this spectaculars task?",
                                         () => controller.deleteToDo(e.id),
                                       );
                                     },

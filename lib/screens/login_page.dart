@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
                 child: Text(
               "Welcome Back",
               style: TextStyle(
-                  fontSize: 30, color: CColors.black.withOpacity(0.6), fontWeight: FontWeight.bold),
+                  fontSize: 30, color: CColors.black.withOpacity(0.8), fontWeight: FontWeight.bold),
             )),
             const SizedBox(
               height: 42,

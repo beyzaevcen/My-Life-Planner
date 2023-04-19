@@ -37,6 +37,7 @@ dependencies:
   sign_in_with_apple: ^4.3.0
   crypto: ^3.0.2
   google_nav_bar: ^5.0.6
+  google_fonts: ^4.0.3
 
 
 
@@ -61,4 +62,9 @@ flutter:
  
   assets:
    - assets/
+
+  fonts:
+   - family: Comfortaa
+     fonts:
+      - asset: assets/fonts/Comfortaa-VariableFont_wght.ttf
 
