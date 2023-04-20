@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../utils/theme.dart';
+import 'constantss.dart';
 
 class FrontView extends StatelessWidget {
-  const FrontView({super.key});
+  final int monthIndex;
+  const FrontView({super.key, required this.monthIndex});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Container(
         decoration: BoxDecoration(
             color: CColors.mainColor,
@@ -20,15 +22,15 @@ class FrontView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //month
-              const Text(
-                "12",
+              Text(
+                monthIndex.toString(),
                 textScaleFactor: 3.5,
-                style: TextStyle(color: CColors.white),
+                style: const TextStyle(color: CColors.white),
               ),
-              const Text(
-                "APR",
+              Text(
+                months[monthIndex]!.keys.toList()[0],
                 textScaleFactor: 2.5,
-                style: TextStyle(color: CColors.white),
+                style: const TextStyle(color: CColors.white),
               ),
               const Spacer(),
               Row(
@@ -37,9 +39,9 @@ class FrontView extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "12/29",
-                        style: TextStyle(color: CColors.white),
+                      Text(
+                        "12/${months[monthIndex]!.values.toList()[0]}",
+                        style: const TextStyle(color: CColors.white),
                       ),
                       const SizedBox(
                         height: 3,

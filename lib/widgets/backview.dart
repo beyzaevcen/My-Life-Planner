@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/widgets/constantss.dart';
 
 import '../utils/theme.dart';
 
 class BackView extends StatelessWidget {
-  const BackView({super.key});
+  final int monthIndex;
+  const BackView({super.key, required this.monthIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +20,31 @@ class BackView extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              const Text(
-                "1",
+              Text(
+                monthIndex.toString(),
                 textScaleFactor: 2.0,
               ),
               const SizedBox(
                 height: 2,
               ),
-              const Text(
-                "APR",
+              Text(
+                months[monthIndex]!.keys.toList()[0],
                 textScaleFactor: 2.5,
-                style: TextStyle(color: Colors.grey),
+                style: const TextStyle(color: Colors.grey),
               ),
               const SizedBox(height: 5.0),
               Expanded(
                   child: GridView.builder(
-                      itemCount: 29,
+                      itemCount: months[monthIndex]!.values.toList()[0],
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 7,
                           childAspectRatio: 1 / 1,
                           crossAxisSpacing: 8.0,
                           mainAxisSpacing: 8.0),
-                      itemBuilder: (_, i) => Text('${i + 1}'))),
+                      itemBuilder: (_, i) {
+                        int day = i + 1;
+                        return Text(day.toString());
+                      })),
               const Text(
                 "Selected a date to write",
                 textScaleFactor: 0.8,

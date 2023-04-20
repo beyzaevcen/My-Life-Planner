@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/diary_controller.dart';
 import 'package:notes_app/widgets/backview.dart';
+import 'package:notes_app/widgets/frontview.dart';
 
 import '../utils/theme.dart';
 
@@ -54,18 +55,17 @@ class DiaryPage extends StatelessWidget {
             height: 20,
           ),
           //Month Cards
-          Expanded(
+          Obx(() => Expanded(
               child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: PageView.builder(
-                controller: PageController(
-                  initialPage: 0,
-                  viewportFraction: 0.75,
-                ),
-                scrollDirection: Axis.horizontal,
-                itemCount: 12,
-                itemBuilder: (_, i) => const BackView()),
-          )),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: PageView.builder(
+                      controller: controller.pageController,
+                      onPageChanged: controller.initialPage,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.itemCount.value,
+                      itemBuilder: (_, index) => controller.isFrontView.value
+                          ? FrontView(monthIndex: index + 1)
+                          : BackView(monthIndex: index + 1))))),
           const SizedBox(
             height: 20,
           ),
@@ -117,21 +117,28 @@ class DiaryPage extends StatelessWidget {
                           )),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration:
-                          const BoxDecoration(shape: BoxShape.circle, color: CColors.mainColor),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.calendar_month,
-                            color: CColors.white,
-                          )),
-                    ),
-                  )
+                  Obx(() => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration:
+                              const BoxDecoration(shape: BoxShape.circle, color: CColors.mainColor),
+                          child: IconButton(
+                              onPressed: () {
+                                controller.switchView();
+                              },
+                              icon: controller.isFrontView.value
+                                  ? const Icon(
+                                      Icons.calendar_month,
+                                      color: CColors.white,
+                                    )
+                                  : const Icon(
+                                      Icons.undo_rounded,
+                                      color: CColors.white,
+                                    )),
+                        ),
+                      ))
                 ],
               ),
             ],
