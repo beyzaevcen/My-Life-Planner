@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:notes_app/screens/calendar_page.dart';
 import 'package:notes_app/widgets/constantss.dart';
 
 import '../utils/theme.dart';
@@ -43,7 +45,10 @@ class BackView extends StatelessWidget {
                           mainAxisSpacing: 8.0),
                       itemBuilder: (_, i) {
                         int day = i + 1;
-                        return Text(day.toString());
+                        return GestureDetector(
+                          child: Text(day.toString()),
+                          onTap: () => Get.to(const CalendarPage()),
+                        );
                       })),
               const Text(
                 "Selected a date to write",

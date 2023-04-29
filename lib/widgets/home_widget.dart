@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:notes_app/screens/calendar_page.dart';
 
 import '../screens/diary_page.dart';
 import '../screens/notes_page.dart';
@@ -127,6 +128,9 @@ class HomeWidget extends StatelessWidget {
                       )),
                 ),
                 InkWell(
+                  onTap: () {
+                    Get.to(const CalendarPage());
+                  },
                   child: Container(
                       decoration: BoxDecoration(
                           color: CColors.white,

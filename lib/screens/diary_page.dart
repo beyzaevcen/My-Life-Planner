@@ -29,12 +29,6 @@ class DiaryPage extends StatelessWidget {
                       Icons.arrow_back_ios,
                       size: 36,
                     )),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.search,
-                      size: 36,
-                    )),
               ],
             ),
           ),
@@ -55,10 +49,10 @@ class DiaryPage extends StatelessWidget {
             height: 20,
           ),
           //Month Cards
-          Obx(() => Expanded(
+          Expanded(
               child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: PageView.builder(
+                  child: Obx(() => PageView.builder(
                       controller: controller.pageController,
                       onPageChanged: controller.initialPage,
                       scrollDirection: Axis.horizontal,
