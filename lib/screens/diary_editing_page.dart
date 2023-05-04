@@ -2,24 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/diary_edit_controller.dart';
 
+import '../models/diary.dart';
 import '../utils/theme.dart';
 
 class DiaryEditingPage extends StatelessWidget {
-  int day;
-  int year;
-  String month;
-
-  DiaryEditingPage({
+  const DiaryEditingPage({
     Key? key,
-    required this.day,
-    required this.year,
-    required this.month,
+    required this.date,
+    this.diary,
   }) : super(key: key);
+
+  final DateTime date;
+  final Diary? diary;
 
   @override
   Widget build(BuildContext context) {
-    final controller = DiaryEditController();
+    final controller = Get.put(DiaryEditController(diary));
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: CColors.mainColor,
+        onPressed: () {
+          controller.addDiary(date);
+        },
+        child: const Icon(Icons.check),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 60.0),
         child: Column(
@@ -40,16 +47,16 @@ class DiaryEditingPage extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "$day ",
+                        date.year.toString(),
                         style: const TextStyle(color: CColors.black, fontSize: 20),
                       ),
-                      Text(
-                        "$month ",
-                        style: const TextStyle(color: CColors.black, fontSize: 20),
+                      const Text(
+                        "",
+                        style: TextStyle(color: CColors.black, fontSize: 20),
                       ),
-                      Text(
-                        year.toString(),
-                        style: const TextStyle(color: CColors.black, fontSize: 20),
+                      const Text(
+                        "",
+                        style: TextStyle(color: CColors.black, fontSize: 20),
                       ),
                     ],
                   )
@@ -69,7 +76,7 @@ class DiaryEditingPage extends StatelessWidget {
                   }
                   return null;
                 },
-                controller: controller.diary,
+                controller: controller.diarym,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
