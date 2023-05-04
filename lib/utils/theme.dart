@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CColors {
   static const mainColor = Color(0xff757397);
+  static const main2Color = Color(0xffD3AEC0);
   static const white = Colors.white;
   static const pink = Color(0xffF1E4E1);
   static const textColor = Color(0xffCECECE);

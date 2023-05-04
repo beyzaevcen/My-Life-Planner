@@ -14,8 +14,9 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
-        child: Column(children: [
+      padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
+      child: Column(
+        children: [
           const Text(
             "ꕤ",
             style: TextStyle(fontSize: 32),
@@ -44,91 +45,116 @@ class HomeWidget extends StatelessWidget {
                 )),
           ),
           const SizedBox(
-            height: 8,
+            height: 30,
           ),
-          Flexible(
-            child: GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(20),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              crossAxisCount: 2,
-              children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
                 InkWell(
                   onTap: () => Get.to(const NotesPage()),
                   child: Container(
-                      decoration: BoxDecoration(
+                      width: Get.width,
+                      height: 120,
+                      decoration: const BoxDecoration(
                           color: CColors.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
-                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 2.0)]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.noteSticky,
-                            size: 50,
-                            color: CColors.black.withOpacity(0.6),
-                          ),
-                          Text(
-                            "Notes",
-                            style: GoogleFonts.comfortaa(
-                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
-                          )
-                        ],
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          boxShadow: [BoxShadow(color: CColors.mainColor, blurRadius: 2.0)]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.noteSticky,
+                              size: 50,
+                              color: CColors.black.withOpacity(0.6),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "Notes",
+                              style: GoogleFonts.comfortaa(
+                                  fontSize: 28, color: Colors.black.withOpacity(0.6)),
+                            )
+                          ],
+                        ),
                       )),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 InkWell(
                   onTap: () => Get.to(const ToDoPage()),
                   child: Container(
-                      decoration: BoxDecoration(
+                      width: Get.width,
+                      height: 120,
+                      decoration: const BoxDecoration(
                           color: CColors.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
-                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.list,
-                            size: 50,
-                            color: CColors.black.withOpacity(0.6),
-                          ),
-                          Text(
-                            "ToDo",
-                            style: GoogleFonts.comfortaa(
-                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
-                          )
-                        ],
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          boxShadow: [BoxShadow(color: CColors.mainColor, blurRadius: 3.0)]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.list,
+                              size: 50,
+                              color: Colors.black.withOpacity(0.6),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "ToDo",
+                              style: GoogleFonts.comfortaa(
+                                  fontSize: 28, color: Colors.black.withOpacity(0.6)),
+                            )
+                          ],
+                        ),
                       )),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 InkWell(
                   onTap: () => Get.to(const DiaryPage()),
                   child: Container(
-                      decoration: BoxDecoration(
+                      width: Get.width,
+                      height: 120,
+                      decoration: const BoxDecoration(
                           color: CColors.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
-                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.book,
-                            size: 50,
-                            color: CColors.black.withOpacity(0.6),
-                          ),
-                          Text(
-                            "Diary",
-                            style: GoogleFonts.comfortaa(
-                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
-                          )
-                        ],
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          boxShadow: [BoxShadow(color: CColors.mainColor, blurRadius: 3.0)]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.book,
+                              size: 50,
+                              color: CColors.black.withOpacity(0.6),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "Diary",
+                              style: GoogleFonts.comfortaa(
+                                  fontSize: 28, color: Colors.black.withOpacity(0.6)),
+                            )
+                          ],
+                        ),
                       )),
                 ),
               ],
             ),
-          )
-        ]));
+          ),
+        ],
+      ),
+    );
   }
 }

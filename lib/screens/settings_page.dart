@@ -46,7 +46,7 @@ class SettingsPage extends GetView<AuthController> {
                               borderRadius: BorderRadius.circular(
                                 20.0,
                               ),
-                              side: const BorderSide(width: 1, color: CColors.mainColor)),
+                              side: const BorderSide(width: 1, color: CColors.main2Color)),
                         ),
                         onPressed: () {
                           controller.signOut();

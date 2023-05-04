@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:notes_app/controllers/diary_controller.dart';
 import 'package:notes_app/screens/diary_editing_page.dart';
 import 'package:notes_app/screens/extentions.dart';
 import 'package:notes_app/services.dart/diary_api.dart';
@@ -8,7 +9,7 @@ import 'package:notes_app/widgets/constantss.dart';
 
 import '../utils/theme.dart';
 
-class BackView extends StatelessWidget {
+class BackView extends GetView<DiaryController> {
   final int monthIndex;
   const BackView({super.key, required this.monthIndex});
 
@@ -49,18 +50,22 @@ class BackView extends StatelessWidget {
                       itemBuilder: (_, i) {
                         int day = i + 1;
                         return GestureDetector(
-                            child: Text(day.toString()),
-                            onTap: () async {
-                              final date = DateTime(2023, monthIndex, day);
-                              EasyLoading.show(maskType: EasyLoadingMaskType.clear);
-                              final res = await DiaryApi.getDiary(date.toDate);
-                              if (res == null) {
-                                Get.to(DiaryEditingPage(date: date));
-                              } else {
-                                Get.to(DiaryEditingPage(date: date, diary: res));
-                              }
-                              EasyLoading.dismiss(); //
-                            });
+                          onTap: () async {
+                            final date = DateTime(2023, monthIndex, day);
+                            EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+                            final res = await DiaryApi.getDiary(date.toDate);
+
+                            if (res == null) {
+                              Get.to(DiaryEditingPage(date: date));
+                            } else {
+                              Get.to(DiaryEditingPage(date: date, diary: res));
+                            }
+                            EasyLoading.dismiss(); //
+                          },
+                          child: Text(
+                            day.toString(),
+                          ),
+                        );
                       })),
               const Text(
                 "Selected a date to write",

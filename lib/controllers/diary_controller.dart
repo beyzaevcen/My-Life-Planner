@@ -8,6 +8,7 @@ class DiaryController extends GetxController {
   var viewportFraction = 0.75.obs;
   var itemCount = 12.obs;
   var pageController = PageController(viewportFraction: 0.75);
+  var isContain = false.obs;
 
   switchView() {
     isFrontView.value = !isFrontView.value;
