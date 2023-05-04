@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:notes_app/screens/calendar_page.dart';
+import 'package:notes_app/screens/diary_editing_page.dart';
 import 'package:notes_app/widgets/constantss.dart';
 
 import '../utils/theme.dart';
@@ -47,7 +47,11 @@ class BackView extends StatelessWidget {
                         int day = i + 1;
                         return GestureDetector(
                           child: Text(day.toString()),
-                          onTap: () => Get.to(const CalendarPage()),
+                          onTap: () => Get.to(DiaryEditingPage(
+                            day: day,
+                            month: months[monthIndex]!.keys.toList()[0],
+                            year: 2023,
+                          )),
                         );
                       })),
               const Text(

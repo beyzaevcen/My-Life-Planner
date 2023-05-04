@@ -22,7 +22,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   provider: ^6.0.5
-  flutter_quill: ^7.0.0
+  flutter_quill: ^6.3.1
   get: ^4.6.5
   hive: ^2.2.3
   hive_flutter: ^1.1.0

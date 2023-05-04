@@ -36,6 +36,7 @@ class EditingNotePage extends StatelessWidget {
           children: [
             QuillToolbar.basic(
               controller: controller.quillController,
+              toolbarIconAlignment: WrapAlignment.start,
               iconTheme:
                   const QuillIconTheme(iconSelectedFillColor: CColors.mainColor, borderRadius: 12),
             ),

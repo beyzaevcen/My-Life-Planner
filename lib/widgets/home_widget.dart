@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:notes_app/screens/calendar_page.dart';
 
 import '../screens/diary_page.dart';
 import '../screens/notes_page.dart';
@@ -121,102 +120,6 @@ class HomeWidget extends StatelessWidget {
                           ),
                           Text(
                             "Diary",
-                            style: GoogleFonts.comfortaa(
-                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
-                          )
-                        ],
-                      )),
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.to(const CalendarPage());
-                  },
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: CColors.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
-                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.film,
-                            size: 50,
-                            color: CColors.black.withOpacity(0.6),
-                          ),
-                          Text(
-                            "Films",
-                            style: GoogleFonts.comfortaa(
-                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
-                          )
-                        ],
-                      )),
-                ),
-                InkWell(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: CColors.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
-                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.feather,
-                            size: 50,
-                            color: CColors.black.withOpacity(0.6),
-                          ),
-                          Text(
-                            "Period Tracker",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.comfortaa(
-                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
-                          )
-                        ],
-                      )),
-                ),
-                InkWell(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: CColors.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
-                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.tv,
-                            size: 50,
-                            color: CColors.black.withOpacity(0.6),
-                          ),
-                          Text(
-                            "Tv Series",
-                            style: GoogleFonts.comfortaa(
-                                fontSize: 28, color: Colors.black.withOpacity(0.6)),
-                          )
-                        ],
-                      )),
-                ),
-                InkWell(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: CColors.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          border: Border.all(color: CColors.mainColor.withOpacity(0.7), width: 2),
-                          boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 3.0)]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.bookOpen,
-                            size: 50,
-                            color: CColors.black.withOpacity(0.6),
-                          ),
-                          Text(
-                            "Books",
                             style: GoogleFonts.comfortaa(
                                 fontSize: 28, color: Colors.black.withOpacity(0.6)),
                           )

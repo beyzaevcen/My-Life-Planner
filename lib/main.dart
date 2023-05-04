@@ -3,21 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notes_app/controllers/auth_controller.dart';
 import 'package:notes_app/controllers/global_bindings.dart';
 import 'package:notes_app/widgets/root_wrapper.dart';
 
 import 'firebase_options.dart';
 
 void main() async {
-  await Hive.initFlutter();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  await Hive.openBox("notes");
   await Firebase.initializeApp(
-    name: "my-life-planner",
+    name: "notes-app",
     options: DefaultFirebaseOptions.currentPlatform,
-  ).then((value) => Get.put(AuthController()));
+  );
 
   runApp(const MyApp());
 }
