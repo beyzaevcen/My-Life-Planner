@@ -96,21 +96,6 @@ class DiaryPage extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration:
-                          const BoxDecoration(shape: BoxShape.circle, color: CColors.mainColor),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.edit_outlined,
-                            color: CColors.white,
-                          )),
-                    ),
-                  ),
                   Obx(() => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(

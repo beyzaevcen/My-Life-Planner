@@ -13,4 +13,6 @@ class DiaryController extends GetxController {
   switchView() {
     isFrontView.value = !isFrontView.value;
   }
+
+  checkIsContain() {}
 }

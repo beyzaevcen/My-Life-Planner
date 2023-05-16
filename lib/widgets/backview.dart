@@ -50,22 +50,37 @@ class BackView extends GetView<DiaryController> {
                       itemBuilder: (_, i) {
                         int day = i + 1;
                         return GestureDetector(
-                          onTap: () async {
-                            final date = DateTime(2023, monthIndex, day);
-                            EasyLoading.show(maskType: EasyLoadingMaskType.clear);
-                            final res = await DiaryApi.getDiary(date.toDate);
+                            onTap: () async {
+                              final date = DateTime(2023, monthIndex, day);
+                              EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+                              final res = await DiaryApi.getDiary(date.toDate);
 
-                            if (res == null) {
-                              Get.to(DiaryEditingPage(date: date));
-                            } else {
-                              Get.to(DiaryEditingPage(date: date, diary: res));
-                            }
-                            EasyLoading.dismiss(); //
-                          },
-                          child: Text(
-                            day.toString(),
-                          ),
-                        );
+                              if (res == null) {
+                                Get.to(DiaryEditingPage(date: date));
+                              } else {
+                                Get.to(DiaryEditingPage(date: date, diary: res));
+                              }
+                              EasyLoading.dismiss(); //
+                            },
+                            child: controller.isContain.value
+                                ? Container(
+                                    decoration: BoxDecoration(
+                                        color: CColors.pink,
+                                        border: Border.all(width: 1),
+                                        borderRadius: const BorderRadius.all(Radius.circular(12))),
+                                    child: Center(
+                                      child: Text(
+                                        day.toString(),
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    child: Center(
+                                      child: Text(
+                                        day.toString(),
+                                      ),
+                                    ),
+                                  ));
                       })),
               const Text(
                 "Selected a date to write",

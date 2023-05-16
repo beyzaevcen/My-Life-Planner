@@ -33,41 +33,6 @@ class FrontView extends StatelessWidget {
                 style: const TextStyle(color: CColors.white),
               ),
               const Spacer(),
-              Row(
-                children: [
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "12/${months[monthIndex]!.values.toList()[0]}",
-                        style: const TextStyle(color: CColors.white),
-                      ),
-                      const SizedBox(
-                        height: 3,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 3.0,
-                        color: Colors.white30,
-                        child: FractionallySizedBox(
-                          alignment: Alignment.centerLeft,
-                          widthFactor: 12 / 29,
-                          child: Container(
-                            color: CColors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.more_vert_outlined,
-                        color: CColors.white,
-                      ))
-                ],
-              ),
             ],
           ),
         ),
