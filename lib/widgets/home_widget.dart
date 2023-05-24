@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:notes_app/screens/habit_page.dart';
 
 import '../screens/diary_page.dart';
 import '../screens/notes_page.dart';
@@ -143,6 +144,40 @@ class HomeWidget extends StatelessWidget {
                             ),
                             Text(
                               "Diary",
+                              style: GoogleFonts.comfortaa(
+                                  fontSize: 28, color: Colors.black.withOpacity(0.6)),
+                            )
+                          ],
+                        ),
+                      )),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () => Get.to(const HabittrickerPage()),
+                  child: Container(
+                      width: Get.width,
+                      height: 120,
+                      decoration: const BoxDecoration(
+                          color: CColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          boxShadow: [BoxShadow(color: CColors.mainColor, blurRadius: 3.0)]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.check,
+                              size: 50,
+                              color: CColors.black.withOpacity(0.6),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "Habit Tricker",
                               style: GoogleFonts.comfortaa(
                                   fontSize: 28, color: Colors.black.withOpacity(0.6)),
                             )
