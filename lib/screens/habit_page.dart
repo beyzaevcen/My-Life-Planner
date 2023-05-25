@@ -12,7 +12,29 @@ class HabittrickerPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 50.0),
         child: ListView(
-          children: const [HabitTile(), HabitTile(), HabitTile(), HabitTile(), HabitTile()],
+          children: const [
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Center(
+                  child: Text(
+                "Success is the sum of small efforts repeated day in day out",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20),
+              )),
+            ),
+            HabitTile(
+              habitTile: "Study",
+            ),
+            HabitTile(
+              habitTile: "Mediatate",
+            ),
+            HabitTile(
+              habitTile: "Read",
+            ),
+            HabitTile(
+              habitTile: "Love",
+            ),
+          ],
         ),
       ),
     );
