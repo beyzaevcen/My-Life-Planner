@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DiaryController extends GetxController {
-  var dropDownValue = "2023".obs;
-  var isFrontView = true.obs;
-  var initialPage = 0.obs;
-  var viewportFraction = 0.75.obs;
-  var itemCount = 12.obs;
-  var pageController = PageController(viewportFraction: 0.75);
-  var isContain = false.obs;
+  final dropDownValue = "2023".obs;
 
-  switchView() {
-    isFrontView.value = !isFrontView.value;
+  final isFrontView = true.obs;
+  final isContain = false.obs;
+
+  final initialPage = 0.obs;
+
+  final pageController = PageController(viewportFraction: 0.75);
+
+  void switchView() {
+    isFrontView.toggle();
   }
 
   checkIsContain() {}
+
+  @override
+  void onClose() {
+    pageController.dispose();
+    super.onClose();
+  }
 }

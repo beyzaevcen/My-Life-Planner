@@ -50,16 +50,23 @@ class DiaryPage extends StatelessWidget {
           ),
           //Month Cards
           Expanded(
-              child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Obx(() => PageView.builder(
-                      controller: controller.pageController,
-                      onPageChanged: controller.initialPage,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.itemCount.value,
-                      itemBuilder: (_, index) => controller.isFrontView.value
-                          ? FrontView(monthIndex: index + 1)
-                          : BackView(monthIndex: index + 1))))),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Obx(
+                () => PageView(
+                  controller: controller.pageController,
+                  onPageChanged: controller.initialPage,
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    for (int i = 1; i <= 12; i++)
+                      controller.isFrontView.value
+                          ? FrontView(monthIndex: i)
+                          : BackView(monthIndex: i)
+                  ],
+                ),
+              ),
+            ),
+          ),
           const SizedBox(
             height: 20,
           ),
