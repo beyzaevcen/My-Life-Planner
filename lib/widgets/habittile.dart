@@ -29,10 +29,8 @@ class HabitTile extends GetView<HabitController> {
         child: Container(
             width: Get.width,
             height: 90,
-            decoration: BoxDecoration(
-                border: Border.all(width: 1, color: CColors.mainColor),
-                borderRadius: BorderRadius.circular(12),
-                color: CColors.white),
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(12), color: CColors.white),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -85,11 +83,13 @@ class HabitTile extends GetView<HabitController> {
                     ],
                   ),
                 ),
-                IconButton(
-                    onPressed: () {
-                      settingsTap;
-                    },
-                    icon: const Icon(Icons.settings))
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: GestureDetector(
+                    onTap: settingsTap,
+                    child: const Icon(Icons.settings),
+                  ),
+                )
               ],
             )));
   }

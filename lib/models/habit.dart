@@ -1,6 +1,6 @@
 class Habit {
-  final int timeSpent;
-  final int timeGoal;
+  int timeSpent;
+  int timeGoal;
   bool habitStarted;
   final String habitTile;
 

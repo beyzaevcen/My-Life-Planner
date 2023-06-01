@@ -15,15 +15,17 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 70, left: 8.0, right: 8.0),
-      child: Column(
+      padding: const EdgeInsets.only(top: 20, left: 8.0, right: 8.0),
+      child: ListView(
         children: [
-          const Text(
-            "ꕤ",
-            style: TextStyle(fontSize: 32),
+          const Center(
+            child: Text(
+              "ꕤ",
+              style: TextStyle(fontSize: 32),
+            ),
           ),
           const SizedBox(
-            height: 8,
+            height: 2,
           ),
           InkWell(
             onTap: () {},

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:notes_app/controllers/bottomnavigation_controller.dart';
 import 'package:notes_app/controllers/todo_contoller.dart';
 import 'package:notes_app/screens/home_page.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -79,7 +80,6 @@ class AuthController extends GetxController {
       //   }
       //   return;
       // }
-      Get.to(const HomePage());
       return;
     } on FirebaseAuthException catch (err) {
       Helper.showError("error".tr, err.code.tr);
@@ -176,6 +176,10 @@ class AuthController extends GetxController {
       } catch (_) {}
 
       await _auth.signOut();
+      try {
+        Get.find<BottomNavigationController>().currentindex.value = 0;
+      } catch (_) {}
+
       Get.delete<ToDoController>();
     } catch (err) {
       debugPrint("Signout error : $err");
