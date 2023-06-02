@@ -36,4 +36,11 @@ class DiaryEditController extends GetxController {
       print("hata");
     }
   }
+
+  String fixed(String num) {
+    if (num.length == 1) {
+      return "0$num";
+    }
+    return num;
+  }
 }

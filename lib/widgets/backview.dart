@@ -43,10 +43,10 @@ class BackView extends GetView<DiaryController> {
                   child: GridView.builder(
                       itemCount: months[monthIndex]!.values.toList()[0],
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 7,
+                          crossAxisCount: 6,
                           childAspectRatio: 1 / 1,
                           crossAxisSpacing: 8.0,
-                          mainAxisSpacing: 8.0),
+                          mainAxisSpacing: 4.0),
                       itemBuilder: (_, i) {
                         int day = i + 1;
                         return GestureDetector(

@@ -18,21 +18,30 @@ class FrontView extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              //month
-              Text(
-                monthIndex.toString(),
-                textScaleFactor: 3.5,
-                style: const TextStyle(color: CColors.white),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //month
+                  Text(
+                    monthIndex.toString(),
+                    textScaleFactor: 3.5,
+                    style: const TextStyle(color: CColors.white),
+                  ),
+
+                  Text(
+                    months[monthIndex]!.keys.toList()[0],
+                    textScaleFactor: 2.5,
+                    style: const TextStyle(color: CColors.white),
+                  ),
+                  const Text(
+                    "◠‿◠ ✿",
+                    style: TextStyle(color: CColors.white),
+                  ),
+                  const Spacer(),
+                ],
               ),
-              Text(
-                months[monthIndex]!.keys.toList()[0],
-                textScaleFactor: 2.5,
-                style: const TextStyle(color: CColors.white),
-              ),
-              const Spacer(),
             ],
           ),
         ),

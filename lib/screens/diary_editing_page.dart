@@ -47,16 +47,16 @@ class DiaryEditingPage extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        date.year.toString(),
+                        "${controller.fixed(date.day.toString())}/",
                         style: const TextStyle(color: CColors.black, fontSize: 20),
                       ),
-                      const Text(
-                        "",
-                        style: TextStyle(color: CColors.black, fontSize: 20),
+                      Text(
+                        "${controller.fixed(date.month.toString())}/",
+                        style: const TextStyle(color: CColors.black, fontSize: 20),
                       ),
-                      const Text(
-                        "",
-                        style: TextStyle(color: CColors.black, fontSize: 20),
+                      Text(
+                        "${date.year}",
+                        style: const TextStyle(color: CColors.black, fontSize: 20),
                       ),
                     ],
                   )

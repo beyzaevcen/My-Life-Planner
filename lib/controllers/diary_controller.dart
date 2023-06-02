@@ -9,7 +9,7 @@ class DiaryController extends GetxController {
 
   final initialPage = 0.obs;
 
-  final pageController = PageController(viewportFraction: 0.75);
+  final pageController = PageController(viewportFraction: 0.9);
 
   void switchView() {
     isFrontView.toggle();

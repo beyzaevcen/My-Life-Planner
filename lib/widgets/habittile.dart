@@ -47,7 +47,7 @@ class HabitTile extends GetView<HabitController> {
                           child: Stack(children: [
                             CircularPercentIndicator(
                               radius: 30,
-                              percent: 0.7,
+                              percent: (controller.percentCompleted(timeSpent, timeGoal) * 100),
                               progressColor: const Color.fromARGB(255, 234, 154, 192),
                             ),
                             Center(
@@ -75,7 +75,7 @@ class HabitTile extends GetView<HabitController> {
                             height: 5,
                           ),
                           Text(
-                            "$timeSpent/$timeGoal",
+                            "${controller.formatToMinSecond(timeSpent)}/$timeGoal = %${(controller.percentCompleted(timeSpent, timeGoal) * 100).toStringAsFixed(0)}",
                             style: const TextStyle(color: CColors.darkSubtitle, fontSize: 15),
                           )
                         ],
