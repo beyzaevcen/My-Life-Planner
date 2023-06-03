@@ -19,8 +19,14 @@ class HabittrickerPage extends StatelessWidget {
           centerTitle: false,
         ),
         backgroundColor: CColors.backgroundcolor,
+        floatingActionButton: FloatingActionButton(
+          elevation: 0,
+          backgroundColor: CColors.main2Color,
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
         body: Padding(
-          padding: const EdgeInsets.only(top: 50.0),
+          padding: const EdgeInsets.only(top: 10.0),
           child: ListView.builder(
               itemCount: controller.HabitList.length,
               itemBuilder: ((context, index) {
