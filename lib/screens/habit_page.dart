@@ -22,7 +22,9 @@ class HabittrickerPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           elevation: 0,
           backgroundColor: CColors.main2Color,
-          onPressed: () {},
+          onPressed: () {
+            controller.addHabit();
+          },
           child: const Icon(Icons.add),
         ),
         body: Padding(

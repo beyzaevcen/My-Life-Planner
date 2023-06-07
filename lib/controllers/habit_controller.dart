@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/models/habit.dart';
+import 'package:notes_app/widgets/addhabit_widget.dart';
 
 class HabitController extends GetxController {
   final HabitList = <Habit>[Habit(0, 60, false, "Meditate"), Habit(0, 12, false, "Study")].obs;
@@ -43,6 +44,10 @@ class HabitController extends GetxController {
 
   double percentCompleted(int timeSpent, int timeGoal) {
     return timeSpent / (timeGoal * 60);
+  }
+
+  void addHabit() {
+    Get.dialog(const AddHabit());
   }
 }
 // canım edam biricik edam, bi seni bi de ezeli ayrı severim
