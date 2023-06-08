@@ -6,6 +6,9 @@ import 'package:notes_app/widgets/addhabit_widget.dart';
 class HabitController extends GetxController {
   final HabitList = <Habit>[Habit(0, 60, false, "Meditate"), Habit(0, 12, false, "Study")].obs;
 
+  final habitName = TextEditingController();
+  final timeGoal = TextEditingController();
+
   void habitS(int index) {
     //habit strated or stopped
     HabitList[index].habitStarted = !HabitList[index].habitStarted;
@@ -48,6 +51,11 @@ class HabitController extends GetxController {
 
   void addHabit() {
     Get.dialog(const AddHabit());
+  }
+
+  void createHbait() {
+    HabitList.add(Habit(0, int.parse(timeGoal.text), false, habitName.text));
+    Get.back();
   }
 }
 // canım edam biricik edam, bi seni bi de ezeli ayrı severim

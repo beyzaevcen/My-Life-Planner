@@ -179,7 +179,7 @@ class HomeWidget extends StatelessWidget {
                               width: 20,
                             ),
                             Text(
-                              "Habit Tricker",
+                              "Habit Tracker",
                               style: GoogleFonts.comfortaa(
                                   fontSize: 28, color: Colors.black.withOpacity(0.6)),
                             )
