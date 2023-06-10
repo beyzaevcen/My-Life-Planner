@@ -8,6 +8,7 @@ import 'package:notes_app/services.dart/diary_api.dart';
 class DiaryEditController extends GetxController {
   final diarym = TextEditingController();
   final diaryList = <Diary>[].obs;
+  var isEmpty = true;
 
   Diary? tempDiary;
   DiaryEditController(this.tempDiary);
@@ -35,6 +36,7 @@ class DiaryEditController extends GetxController {
     } else {
       print("hata");
     }
+    isEmpty = false;
   }
 
   String fixed(String num) {
