@@ -13,51 +13,103 @@ class SettingsPage extends GetView<AuthController> {
     return Scaffold(
         backgroundColor: CColors.backgroundcolor,
         body: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Center(
-                    child: Icon(
-                  FontAwesomeIcons.userNinja,
-                  color: CColors.mainColor,
-                  size: 70,
-                )),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Beyza Evcen",
-                  style: TextStyle(color: CColors.black),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      height: 60,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: CColors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                20.0,
-                              ),
-                              side: const BorderSide(width: 1, color: CColors.main2Color)),
-                        ),
-                        onPressed: () {
-                          controller.signOut();
-                        },
-                        child: const Text(
-                          "Sign Out",
-                          style: TextStyle(fontSize: 20, color: CColors.black),
-                        ),
+          padding: const EdgeInsets.only(top: 100.0, right: 30, left: 30),
+          child: Column(children: [
+            Container(
+              height: 200,
+              decoration: const BoxDecoration(
+                  color: CColors.backgroundcolor,
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  boxShadow: [BoxShadow(color: CColors.mainColor, blurRadius: 2.0)]),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                      child: Icon(
+                    FontAwesomeIcons.userNinja,
+                    color: CColors.black.withOpacity(0.7),
+                    size: 70,
+                  )),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "Beyza Evcen",
+                    style: TextStyle(color: CColors.black, fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: CColors.backgroundcolor,
                       ),
-                    )),
-              ]),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.user,
+                            color: CColors.black.withOpacity(0.7),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text(
+                            "Account",
+                            style: TextStyle(fontSize: 20, color: CColors.black),
+                          ),
+                        ],
+                      )),
+                )),
+            const Divider(height: 1),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: CColors.backgroundcolor,
+                      ),
+                      onPressed: () {
+                        controller.signOut();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.arrowRightFromBracket,
+                            color: CColors.black.withOpacity(0.7),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text(
+                            "Sign Out",
+                            style: TextStyle(fontSize: 20, color: CColors.black),
+                          ),
+                        ],
+                      )),
+                )),
+            const Divider(height: 1),
+            const SizedBox(
+              height: 5,
+            )
+          ]),
         ));
   }
 }

@@ -23,6 +23,7 @@ class DiaryEditingPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: CColors.mainColor,
         onPressed: () {
+          controller.isEmpty = false;
           controller.addDiary(date);
         },
         child: const Icon(Icons.check),

@@ -35,10 +35,7 @@ class FrontView extends StatelessWidget {
                     textScaleFactor: 2.5,
                     style: const TextStyle(color: CColors.white),
                   ),
-                  const Text(
-                    "◠‿◠ ✿",
-                    style: TextStyle(color: CColors.white),
-                  ),
+
                   const Spacer(),
                 ],
               ),

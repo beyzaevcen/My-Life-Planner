@@ -51,7 +51,7 @@ class DiaryPage extends StatelessWidget {
           //Month Cards
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Obx(
                 () => PageView(
                   controller: controller.pageController,
