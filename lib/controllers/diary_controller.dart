@@ -1,10 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:notes_app/screens/extentions.dart';
+import 'package:notes_app/models/diary.dart';
 
 import '../services.dart/diary_api.dart';
 
 class DiaryController extends GetxController {
+  late StreamSubscription<List<Diary>> getDiaries;
+  final diaries = <Diary>[].obs;
+  @override
+  void onInit() {
+    getDiaries = DiaryApi.getDiaries().listen((event) {
+      try {
+        final diary = event.first;
+        event.remove(diary);
+        event.insert(0, diary);
+      } catch (_) {}
+      diaries.value = event;
+    });
+    super.onInit();
+  }
+
   final dropDownValue = "2023".obs;
 
   final isFrontView = true.obs;
@@ -18,12 +35,11 @@ class DiaryController extends GetxController {
     isFrontView.toggle();
   }
 
-  Future<bool> checkIsContain(DateTime date) async {
-    final res = await DiaryApi.getDiary(date.toDate);
-    if (res == null) {
-      return false;
-    }
-    return true;
+  bool checkIsContain(String date) {
+    final d = date.substring(4);
+
+    final value = diaries.map((e) => e.whenCreated.substring(4) == d);
+    return false;
   }
 
   @override

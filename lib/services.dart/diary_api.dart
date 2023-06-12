@@ -41,6 +41,17 @@ class DiaryApi {
     }
   }
 
+  static Stream<List<Diary>> getDiaries() {
+    //Stream firebaseden anlık olarak veri çekiyor. Herhangi bir değişikliği tekrar çağırmana gerek kalmadan kendi yapıyo
+    final result = firestore
+        .collection("users")
+        .doc(AuthController.to.user.value!.uid)
+        .collection("diary")
+        .snapshots();
+
+    return result.map((event) => event.docs.map((e) => Diary.fromMap(e.data())).toList());
+  }
+
   static Future<bool> deleteDiary(String id) async {
     try {
       await firestore
