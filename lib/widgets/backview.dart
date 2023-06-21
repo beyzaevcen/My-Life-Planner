@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/diary_controller.dart';
 import 'package:notes_app/screens/diary_editing_page.dart';
@@ -62,25 +63,33 @@ class BackView extends GetView<DiaryController> {
                               }
                               EasyLoading.dismiss(); //
                             },
-                            child: controller.isContain.value
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        color: CColors.pink,
-                                        border: Border.all(width: 1),
-                                        borderRadius: const BorderRadius.all(Radius.circular(12))),
-                                    child: Center(
-                                      child: Text(
-                                        day.toString(),
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    child: Center(
-                                      child: Text(
-                                        day.toString(),
-                                      ),
-                                    ),
-                                  ));
+                            child: Obx(() => Container(
+                                decoration: const BoxDecoration(
+                                  color: CColors.white,
+                                ),
+                                child: controller.diaries.any((element) =>
+                                        element.whenCreated ==
+                                        "2023-${monthIndex.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}")
+                                    ? Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(day.toString()),
+                                          const Icon(
+                                            FontAwesomeIcons.solidHeart,
+                                            color: CColors.main2Color,
+                                            size: 8,
+                                          )
+                                        ],
+                                      )
+                                    : Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(day.toString()),
+                                          const SizedBox(
+                                            height: 8,
+                                          )
+                                        ],
+                                      ))));
                       })),
               const Text(
                 "Selected a date to write",
