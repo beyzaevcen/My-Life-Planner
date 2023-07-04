@@ -30,7 +30,7 @@ class HabitTile extends GetView<HabitController> {
             width: Get.width,
             height: 90,
             decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(12), color: CColors.white),
+                BoxDecoration(borderRadius: BorderRadius.circular(12), color: CColors.main2Color),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -46,10 +46,9 @@ class HabitTile extends GetView<HabitController> {
                           height: 60,
                           child: Stack(children: [
                             CircularPercentIndicator(
-                              radius: 30,
-                              percent: (controller.percentCompleted(timeSpent, timeGoal) * 100),
-                              progressColor: const Color.fromARGB(255, 234, 154, 192),
-                            ),
+                                radius: 30,
+                                percent: (controller.percentCompleted(timeSpent, timeGoal) * 100),
+                                progressColor: CColors.black),
                             Center(
                                 child: IconButton(
                                     onPressed: onTap,
@@ -76,7 +75,7 @@ class HabitTile extends GetView<HabitController> {
                           ),
                           Text(
                             "${controller.formatToMinSecond(timeSpent)}/$timeGoal = %${(controller.percentCompleted(timeSpent, timeGoal) * 100).toStringAsFixed(0)}",
-                            style: const TextStyle(color: CColors.darkSubtitle, fontSize: 15),
+                            style: const TextStyle(color: CColors.white, fontSize: 15),
                           )
                         ],
                       ),
