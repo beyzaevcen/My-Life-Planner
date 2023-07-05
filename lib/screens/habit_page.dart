@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/habit_controller.dart';
 import 'package:notes_app/utils/theme.dart';
+import 'package:notes_app/widgets/delete_habit.dart';
 import 'package:notes_app/widgets/habittile.dart';
 
 class HabittrickerPage extends StatelessWidget {
@@ -27,24 +28,24 @@ class HabittrickerPage extends StatelessWidget {
           },
           child: const Icon(Icons.add),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: ListView.builder(
-              itemCount: controller.HabitList.length,
-              itemBuilder: ((context, index) {
-                return Obx(() => HabitTile(
+        body: Obx(() => Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: ListView.builder(
+                  itemCount: controller.HabitList.length,
+                  itemBuilder: ((context, index) {
+                    return HabitTile(
                       habitTile: controller.HabitList[index].habitTile,
                       habitStarted: controller.HabitList[index].habitStarted,
                       onTap: () {
                         controller.habitS(index);
                       },
-                      settingsTap: () {
-                        controller.settingsOpen(index);
+                      deleteTap: () {
+                        Get.dialog(DeleteHabit(index: index, id: controller.HabitList[index].id));
                       },
                       timeGoal: controller.HabitList[index].timeGoal,
                       timeSpent: controller.HabitList[index].timeSpent,
-                    ));
-              })),
-        ));
+                    );
+                  })),
+            )));
   }
 }

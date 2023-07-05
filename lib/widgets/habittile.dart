@@ -8,7 +8,7 @@ import '../utils/theme.dart';
 class HabitTile extends GetView<HabitController> {
   final String habitTile;
   final VoidCallback onTap;
-  final VoidCallback settingsTap;
+  final VoidCallback deleteTap;
   final int timeSpent;
   final int timeGoal;
   final bool habitStarted;
@@ -17,7 +17,7 @@ class HabitTile extends GetView<HabitController> {
       {super.key,
       required this.habitTile,
       required this.onTap,
-      required this.settingsTap,
+      required this.deleteTap,
       required this.timeSpent,
       required this.timeGoal,
       required this.habitStarted});
@@ -30,7 +30,7 @@ class HabitTile extends GetView<HabitController> {
             width: Get.width,
             height: 90,
             decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(12), color: CColors.main2Color),
+                BoxDecoration(borderRadius: BorderRadius.circular(12), color: CColors.white),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -85,8 +85,11 @@ class HabitTile extends GetView<HabitController> {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: GestureDetector(
-                    onTap: settingsTap,
-                    child: const Icon(Icons.settings),
+                    onTap: deleteTap,
+                    child: const Icon(
+                      Icons.delete,
+                      color: CColors.darkSubtitle,
+                    ),
                   ),
                 )
               ],
