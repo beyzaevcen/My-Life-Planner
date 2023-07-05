@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/models/habit.dart';
+import 'package:notes_app/services.dart/habit_api.dart';
 import 'package:notes_app/widgets/addhabit_widget.dart';
 
 class HabitController extends GetxController {
   final HabitList =
-      <Habit>[Habit(0, 60, false, "Meditate", "0"), Habit(0, 12, false, "Study", "1")].obs;
+      <Habit>[Habit(12, 60, false, "Meditate", "0"), Habit(0, 12, false, "Study", "1")].obs;
 
   final habitName = TextEditingController();
   final timeGoal = TextEditingController();
@@ -57,6 +58,7 @@ class HabitController extends GetxController {
   void createHbait() {
     String id = DateTime.now().toString();
     HabitList.add(Habit(0, int.parse(timeGoal.text), false, habitName.text, id));
+    HabitApi.createHabit(Habit(0, int.parse(timeGoal.text), false, habitName.text, id));
     habitName.clear();
     timeGoal.clear();
     Get.back();

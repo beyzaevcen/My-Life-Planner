@@ -30,7 +30,7 @@ class HabitTile extends GetView<HabitController> {
             width: Get.width,
             height: 90,
             decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(12), color: CColors.white),
+                BoxDecoration(borderRadius: BorderRadius.circular(12), color: CColors.main2Color),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -48,7 +48,11 @@ class HabitTile extends GetView<HabitController> {
                             CircularPercentIndicator(
                                 radius: 30,
                                 percent: (controller.percentCompleted(timeSpent, timeGoal) * 100),
-                                progressColor: CColors.black),
+                                backgroundColor: CColors.white,
+                                circularStrokeCap: CircularStrokeCap.round,
+                                animation: true,
+                                animationDuration: 1500,
+                                progressColor: CColors.mainColor),
                             Center(
                                 child: IconButton(
                                     onPressed: onTap,
@@ -75,7 +79,7 @@ class HabitTile extends GetView<HabitController> {
                           ),
                           Text(
                             "${controller.formatToMinSecond(timeSpent)}/$timeGoal = %${(controller.percentCompleted(timeSpent, timeGoal) * 100).toStringAsFixed(0)}",
-                            style: const TextStyle(color: CColors.white, fontSize: 15),
+                            style: TextStyle(color: CColors.white.withOpacity(0.7), fontSize: 15),
                           )
                         ],
                       ),
@@ -86,9 +90,9 @@ class HabitTile extends GetView<HabitController> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: GestureDetector(
                     onTap: deleteTap,
-                    child: const Icon(
+                    child: Icon(
                       Icons.delete,
-                      color: CColors.darkSubtitle,
+                      color: CColors.white.withOpacity(0.5),
                     ),
                   ),
                 )

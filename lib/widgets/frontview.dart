@@ -13,7 +13,7 @@ class FrontView extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: Container(
         decoration: BoxDecoration(
-          color: CColors.main2Color,
+          color: CColors.mainColor,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
