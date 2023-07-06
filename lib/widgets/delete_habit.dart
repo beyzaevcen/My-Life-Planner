@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/controllers/habit_controller.dart';
+import 'package:notes_app/services.dart/habit_api.dart';
 
 import '../utils/theme.dart';
 
@@ -36,6 +37,7 @@ class DeleteHabit extends GetView<HabitController> {
             TextButton(
                 onPressed: () {
                   controller.HabitList.remove(controller.HabitList[index]);
+                  HabitApi.deleteHabit(id);
                   Get.back();
                 },
                 child: const Text(

@@ -23,17 +23,16 @@ class SettingsPage extends GetView<AuthController> {
                   boxShadow: [BoxShadow(color: CColors.mainColor, blurRadius: 2.0)]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Center(
-                      child: Icon(
-                    FontAwesomeIcons.userNinja,
-                    color: CColors.black.withOpacity(0.7),
-                    size: 70,
+                      child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/beyza.jpeg'),
+                    radius: 45,
                   )),
-                  const SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
-                  const Text(
+                  Text(
                     "Beyza Evcen",
                     style: TextStyle(color: CColors.black, fontSize: 20),
                   ),

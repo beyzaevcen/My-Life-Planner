@@ -47,7 +47,7 @@ class HabitTile extends GetView<HabitController> {
                           child: Stack(children: [
                             CircularPercentIndicator(
                                 radius: 30,
-                                percent: (controller.percentCompleted(timeSpent, timeGoal) * 100),
+                                percent: (controller.percentCompleted(timeSpent, timeGoal)),
                                 backgroundColor: CColors.white,
                                 circularStrokeCap: CircularStrokeCap.round,
                                 animation: true,
