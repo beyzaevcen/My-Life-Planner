@@ -71,7 +71,7 @@ class AddHabit extends GetView<HabitController> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  hintText: "Enter a time goal",
+                  hintText: "Enter a time goal(min)",
                 ),
               ),
             ],

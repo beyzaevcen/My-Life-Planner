@@ -76,5 +76,3 @@ class HabitController extends GetxController {
     super.onClose();
   }
 }
-// canım edam biricik edam, bi seni bi de ezeli ayrı severim
-

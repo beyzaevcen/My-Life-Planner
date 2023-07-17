@@ -55,4 +55,23 @@ class HabitApi {
       return false;
     }
   }
+
+  static Future<bool> updateHabit(Habit habit) async {
+    try {
+      await firestore
+          .collection("users")
+          .doc(AuthController.to.user.value!.uid)
+          .collection("habits")
+          .doc(habit.id)
+          .set(habit.toMap());
+
+      return true;
+    } on FirebaseException catch (err) {
+      Helper.showError("error", err.code);
+      return false;
+    } catch (err) {
+      Helper.showError("error", err.toString());
+      return false;
+    }
+  }
 }
